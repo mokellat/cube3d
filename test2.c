@@ -1,16 +1,28 @@
 #include "cub3d.h"
 
+void    data_gather()
+{
+    tile = 50;
+    width = tile * 8;
+    height = tile * 8;
+}
+
 void    player_config()
 {
-    new_player.pos_x = 400;
-    new_player.pos_y = 400;
+    data_gather();
+    new_player.pos_x = width / 2;
+    new_player.pos_y = height / 2;
     new_player.turn_direction = 0;
     new_player.walk_direction = 0;
     new_player.rotation_angle = M_PI / 2;
+    new_player.FOV_angle = M_PI / 3;
+    new_player.wall_width = 30;
+    new_player.Num_rays = width / new_player.wall_width;
+    new_player.ray_angle = new_player.rotation_angle - new_player.FOV_angle / 2;
     wall_check = 0;
 }
 
-void    triangle_draw()
+void    player_draw()
 {
     int i;
     int j;
@@ -29,18 +41,18 @@ void    triangle_draw()
     }
 }
 
-void    line_draw()
+void    line_draw(double angle, int color)
 {
     int i;
     int j;
     int rayon;
 
-    rayon = 40;
+    rayon = 100;
     while(rayon--)
     {
-        j = cos(new_player.rotation_angle) * rayon + new_player.pos_x;
-        i = sin(new_player.rotation_angle) * rayon + new_player.pos_y; 
-        g_mlx.img_data[i * width + j] = 0xFF0000;
+        j = cos(angle) * rayon + new_player.pos_x + 5;
+        i = sin(angle) * rayon + new_player.pos_y + 5 ; 
+        g_mlx.img_data[i * width + j] = color;
     }
 }
 
@@ -54,7 +66,8 @@ void    map_draw()
     i = 0;
     j = 0;
     y = 0;
-     while(i < 8)
+    //data_gather();
+    while(i < 8)
     {
         j = 0;
         x = 0;
@@ -64,10 +77,10 @@ void    map_draw()
           {   
                 m = y;
                 wall_check = 1;
-                while(m < 100 + y)
+                while(m < tile + y)
                 {
                     n = x;
-                    while(n < 100 + x)
+                    while(n < tile + x)
                     {
                         g_mlx.img_data[m * width + n] = 0xFFFFFF;
                         n++;
@@ -79,10 +92,10 @@ void    map_draw()
           {
                 wall_check = 0;
                 m = y;
-                while(m < 100 + y)
+                while(m < tile + y)
                 {
                     n = x;
-                    while(n < 100 + x)
+                    while(n < tile + x)
                     {
                         g_mlx.img_data[m * width + n] = 0x000000;
                         n++;
@@ -91,10 +104,28 @@ void    map_draw()
                 }
           }
             j++;
-            x += 100;
+            x += tile;
         }
         i++;
-        y += 100; 
+        y += tile; 
+    }
+}
+
+void    castAllRays()
+{
+    int     col_id;
+    int     index;
+    int     rayon;
+    int     i;
+    int     j;
+
+    index = 0;
+    //new_player.ray_angle = new_player.rotation_angle - new_player.FOV_angle / 2;
+    while(index < new_player.Num_rays)
+    {
+        line_draw(new_player.ray_angle, 0x0000FF);
+        new_player.ray_angle += new_player.FOV_angle / new_player.Num_rays;
+        index++;
     }
 }
 
@@ -106,40 +137,53 @@ int     print_key(int key, void *param, void *win_ptr)
 
     x = 10 * cos(new_player.rotation_angle);
     y = 10 * sin(new_player.rotation_angle);
-
+    new_player.ray_angle = new_player.rotation_angle - new_player.FOV_angle / 2;
     g_mlx.img_ptr = mlx_new_image(g_mlx.mlx_ptr, height, width);
     g_mlx.img_data = (int *)mlx_get_data_addr(g_mlx.img_ptr, &k, &k, &k);
-    if(key == 53)
+    if(key == 65307)
         exit(1);
-    else if(key == 126)
+    if(key == 65364)
     {
-        if(ptr[(new_player.pos_y) /100][new_player.pos_x / 100] != 1)
+        if(ptr[(new_player.pos_y) / tile][new_player.pos_x / tile] == 0)
         {
-            new_player.pos_y += y;
-            new_player.pos_x += x;
+            if(ptr[(new_player.pos_y + 10) / tile][new_player.pos_x / tile] != 1)
+            {
+                new_player.pos_y += y;
+                new_player.pos_x += x;
+            }
         }
     }
-    else if(key == 125)
+    if(key == 65362)
     {
-        if(ptr[(new_player.pos_y) /100] [new_player.pos_x / 100] != 1)
+        if(ptr[new_player.pos_y / tile][new_player.pos_x / tile] == 0 )
         {
-            new_player.pos_y -= y;
-            new_player.pos_x -= x;
+            if(ptr[(new_player.pos_y - 10) / tile][new_player.pos_x / tile] != 1)
+            {
+                new_player.pos_y -= y;
+                new_player.pos_x -= x;
+            }
         }
     }
-    else if(key == 124)
+    if(key == 65361)
     {
-        if(ptr[(new_player.pos_y) /100][(new_player.pos_x + 4) / 100 ] != 1)
-            new_player.rotation_angle += 0.1;   
+        if(ptr[(new_player.pos_y ) / tile][(new_player.pos_x ) / tile ] == 0)
+        {
+            new_player.rotation_angle += 0.3;
+            new_player.ray_angle += new_player.FOV_angle / new_player.Num_rays;
+        }
     }
-    else if(key == 123)
+    if(key == 65363)
     {
-        if(ptr[new_player.pos_y /100][(new_player.pos_x - 4) / 100 ] != 1)
-            new_player.rotation_angle += 0.1;
+        if(ptr[new_player.pos_y / tile][(new_player.pos_x) / tile] == 0)
+        {
+            new_player.rotation_angle -= 0.3;
+            new_player.ray_angle -= new_player.FOV_angle / new_player.Num_rays;
+        }
     }
     map_draw();
-    triangle_draw();
-    line_draw();
+    player_draw();
+    line_draw(new_player.rotation_angle, 0xFF0000);
+    castAllRays();
     mlx_put_image_to_window(g_mlx.mlx_ptr, g_mlx.win_ptr, g_mlx.img_ptr, 0, 0);
     //mlx_destroy_image(g_mlx.mlx_ptr, g_mlx.img_ptr);
     return (0);
@@ -153,8 +197,7 @@ int     main()
     int         m;
     int         n;
 
-    height = 800;
-    width = 800;
+    data_gather();
     g_mlx.mlx_ptr = mlx_init();
     g_mlx.win_ptr = mlx_new_window(g_mlx.mlx_ptr, height, width, "cub3d");
     g_mlx.img_ptr = mlx_new_image(g_mlx.mlx_ptr, height, width);
@@ -163,9 +206,10 @@ int     main()
     map_draw();
     // triangle draw
     player_config();
-    triangle_draw();
-    line_draw();
-    mlx_hook(g_mlx.win_ptr, 2, 0, print_key, (void *)0);
+    player_draw();
+    line_draw(new_player.rotation_angle, 0xFF0000);
+    castAllRays();
+    mlx_key_hook(g_mlx.win_ptr, print_key, (void *)0);
     mlx_put_image_to_window(g_mlx.mlx_ptr, g_mlx.win_ptr, g_mlx.img_ptr, 0, 0);
     mlx_loop(g_mlx.mlx_ptr);
 }

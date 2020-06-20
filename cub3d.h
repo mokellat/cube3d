@@ -28,6 +28,10 @@ int     y;
 int     height;
 int     width;
 int     wall_check;
+int     tile;
+int     nbr_rows;
+int     nbr_cols;
+
 int ptr[8][8]= {{1,1,1,1,1,1,1,1},
                      {1,0,0,0,0,0,0,1},
                      {1,0,0,0,0,1,0,1},
@@ -45,6 +49,10 @@ typedef struct  s_player
     int     turn_direction;
     int     walk_direction;
     double  rotation_angle;
+    float   FOV_angle;
+    int     Num_rays;
+    int     wall_width;
+    double  ray_angle;
 }               t_player;
 
 t_player    new_player;
