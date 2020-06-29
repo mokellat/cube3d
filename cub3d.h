@@ -21,6 +21,7 @@
 # include <stdarg.h>
 # include <limits.h>
 # include "mlx.h"
+# include <stdbool.h>
 # include <math.h>
 
 int     x;
@@ -31,6 +32,22 @@ int     wall_check;
 int     tile;
 int     nbr_rows;
 int     nbr_cols;
+int     xinterupt;
+int     yinterupt;
+int     xstep;
+int     ystep;
+int     nextHorzTouchX;
+int     nextHorzTouchY;
+int     foundAwallHorz;
+int     horzWallHitX;
+int     horzWallHitY;
+int     nextVerTouchX;
+int     nextVerTouchY;
+int     foundAwallVer;
+int     verWallHitX;
+int     verWallHitY;
+int     horzDistance;
+int     verDistance;
 
 int ptr[8][8]= {{1,1,1,1,1,1,1,1},
                      {1,0,0,0,0,0,0,1},
@@ -49,10 +66,18 @@ typedef struct  s_player
     int     turn_direction;
     int     walk_direction;
     double  rotation_angle;
-    float   FOV_angle;
+    double  FOV_angle;
     int     Num_rays;
     int     wall_width;
     double  ray_angle;
+    bool    ray_up;
+    bool    ray_down;
+    bool    ray_left;
+    bool    ray_right;
+    int     wallHitX;
+    int     wallHitY;
+    int     Distance;
+    bool    wasHitVertical;
 }               t_player;
 
 t_player    new_player;
