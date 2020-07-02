@@ -32,10 +32,14 @@ int     wall_check;
 int     tile;
 int     nbr_rows;
 int     nbr_cols;
-int     xinterupt;
-int     yinterupt;
-int     xstep;
-int     ystep;
+int     xinteruptHorz;
+int     yinteruptHorz;
+int     xstepHorz;
+int     ystepHorz;
+int     xinteruptVer;
+int     yinteruptVer;
+int     xstepVer;
+int     ystepVer;
 int     nextHorzTouchX;
 int     nextHorzTouchY;
 int     foundAwallHorz;
@@ -48,6 +52,8 @@ int     verWallHitX;
 int     verWallHitY;
 int     horzDistance;
 int     verDistance;
+int     rayon;
+double     proof;
 
 int ptr[8][8]= {{1,1,1,1,1,1,1,1},
                      {1,0,0,0,0,0,0,1},
