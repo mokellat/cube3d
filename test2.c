@@ -44,7 +44,7 @@ void    rays_directions()
     new_player.ray_left = !(new_player.ray_right);
 }
 
-void    line(int x1, int y1, int x2, int y2, double angle, int var)
+void    line(int x1, int y1, double angle, int var)
 {
     int i;
     int j;
@@ -52,16 +52,16 @@ void    line(int x1, int y1, int x2, int y2, double angle, int var)
     rayon = var;
     while(rayon --)
     {
-        j = cos(normalise_angle(angle)) * rayon + x1 ;
-        i = sin(normalise_angle(angle)) * rayon + y1 ;
         proof = normalise_angle(angle);
+        j = cos(proof) * rayon + x1 ;
+        i = sin(proof) * rayon + y1 ;
         g_mlx.img_data[i * width + j] = 0x0000FF;
     }
 }
 
 void    horz_intersection_calcul()
 {
-    //rays_directions();
+    rays_directions();
     foundAwallHorz = 0;
     horzWallHitX = 0;
     horzWallHitY = 0;
@@ -71,13 +71,13 @@ void    horz_intersection_calcul()
     ystepHorz = tile;
     ystepHorz *= new_player.ray_up ? -1 : 1;
     xstepHorz = tile / tan(new_player.ray_angle);
-    xstepHorz *= (new_player.ray_left && xstepHorz) > 0 ? -1 : 1;
-    xstepHorz *= (new_player.ray_right && xstepHorz) < 0 ? -1 : 1;
+    xstepHorz *= (new_player.ray_left && xstepHorz > 0) ? -1 : 1;
+    xstepHorz *= (new_player.ray_right && xstepHorz < 0) ? -1 : 1;
     nextHorzTouchX = xinteruptHorz;
     nextHorzTouchY = yinteruptHorz;
     if(new_player.ray_up)
         nextHorzTouchY--;
-    while(nextHorzTouchY >= 0 && nextHorzTouchY <= width && nextHorzTouchX >= 0 && nextHorzTouchX <= height)
+    while(nextHorzTouchY >= 0 && nextHorzTouchY <= height && nextHorzTouchX >= 0 && nextHorzTouchX <= width)
     {
         if(ptr[nextHorzTouchY / tile][nextHorzTouchX / tile] == 1)
         {
@@ -96,7 +96,7 @@ void    horz_intersection_calcul()
 
 void    ver_intersection_calcul()
 {
-    //rays_directions();
+    rays_directions();
     foundAwallVer = 0;
     verWallHitX = 0;
     verWallHitY = 0;
@@ -106,13 +106,13 @@ void    ver_intersection_calcul()
     xstepVer = tile;
     xstepVer *= new_player.ray_left ? -1 : 1;
     ystepVer = tile * tan(new_player.ray_angle);
-    ystepVer *= (new_player.ray_up && ystepVer) > 0 ? -1 : 1;
-    ystepVer *= (new_player.ray_down && ystepVer) < 0 ? -1 : 1;
+    ystepVer *= (new_player.ray_up && ystepVer > 0) ? -1 : 1;
+    ystepVer *= (new_player.ray_down && ystepVer < 0) ? -1 : 1;
     nextVerTouchX = xinteruptVer;
     nextVerTouchY = yinteruptVer;
-    if(new_player.ray_up)
+    if(new_player.ray_left)
         nextVerTouchX--;
-    while(nextVerTouchY >= 0 && nextVerTouchY <= width && nextVerTouchX >= 0 && nextVerTouchX <= height)
+    while(nextVerTouchY >= 0 && nextVerTouchY <= height && nextVerTouchX >= 0 && nextVerTouchX <= width)
     {
         if(ptr[nextVerTouchY / tile][nextVerTouchX / tile] == 1)
         {
@@ -129,11 +129,27 @@ void    ver_intersection_calcul()
     }
 }
 
+void    castAllRays()
+{
+    int     col_id;
+    int     index;
+    int     rayon;
+    int     i;
+    int     j;
+
+    index = 0;
+    //new_player.ray_angle = new_player.rotation_angle - new_player.FOV_angle / 2;
+    while(index < new_player.Num_rays)
+    {
+        line(new_player.pos_x, new_player.pos_y,(new_player.ray_angle), new_player.Distance);
+        new_player.ray_angle += new_player.FOV_angle / new_player.Num_rays;
+        index++;
+    }
+}
+
 void    total_intesection_calcul()
 {
-    int k;
-
-    rays_directions();
+    //rays_directions();
     horz_intersection_calcul();
     ver_intersection_calcul();
     horzDistance = (foundAwallHorz) ? distance_between(new_player.pos_x, new_player.pos_y, horzWallHitX, horzWallHitY) : INT_MAX;
@@ -142,8 +158,7 @@ void    total_intesection_calcul()
     new_player.wallHitY = (horzDistance < verDistance) ? horzWallHitY : verWallHitY;
     new_player.Distance = (horzDistance < verDistance) ? horzDistance : verDistance;
     new_player.wasHitVertical = (verDistance < horzDistance);
-    k = (horzDistance < verDistance) ? horzDistance : verDistance ;
-    line(new_player.pos_x, new_player.pos_y, new_player.wallHitX, new_player.wallHitY,(new_player.ray_angle), k);
+    line(new_player.pos_x, new_player.pos_y, new_player.ray_angle, new_player.Distance);
 }
 
 void    player_draw()
@@ -220,24 +235,6 @@ void    map_draw()
     }
 }
 
-void    castAllRays()
-{
-    int     col_id;
-    int     index;
-    int     rayon;
-    int     i;
-    int     j;
-
-    index = 0;
-    //new_player.ray_angle = new_player.rotation_angle - new_player.FOV_angle / 2;
-    while(index < new_player.Num_rays)
-    {
-        //line_draw(new_player.ray_angle, 0x0000FF);
-        new_player.ray_angle += new_player.FOV_angle / new_player.Num_rays;
-        index++;
-    }
-}
-
 int     print_key(int key, void *param, void *win_ptr)
 {
     int     k;
@@ -294,12 +291,17 @@ int     print_key(int key, void *param, void *win_ptr)
     total_intesection_calcul();
     mlx_put_image_to_window(g_mlx.mlx_ptr, g_mlx.win_ptr, g_mlx.img_ptr, 0, 0);
     //i = normalise_angle(new_player.ray_angle);
-    printf("%f\n", proof);
-    printf("%d\n", verDistance);
-    printf("%d\n", foundAwallVer);
-    printf("%d\n", horzDistance);
-    printf("%d\n", foundAwallHorz);
-    printf("%d\n",new_player.Distance);
+    //printf("%d\n", verDistance);
+    //printf("%d\n", foundAwallVer);
+    printf("%d\n", height);
+    printf("%d\n", width);
+    printf("%d\n", nextVerTouchX);
+    printf("%d\n", nextVerTouchY);
+    //printf("%d\n", horzDistance);
+    //printf("%d\n", foundAwallHorz);
+    printf("%d\n", nextHorzTouchX);
+    printf("%d\n", nextHorzTouchY);
+    //printf("%d\n",new_player.Distance);
     printf("\n");
     //mlx_destroy_image(g_mlx.mlx_ptr, g_mlx.img_ptr);
     return (0);
