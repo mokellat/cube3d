@@ -126,6 +126,6 @@ int	mlx_do_key_autorepeatoff(void *mlx_ptr);
 int	mlx_do_key_autorepeaton(void *mlx_ptr);
 int	mlx_do_sync(void *mlx_ptr);
 
-unsigned int strlcpy(char * dst, const char * src, size_t maxlen);
+//unsigned int strlcpy(char * dst, const char * src, size_t maxlen);
 
 #endif /* MLX_H */

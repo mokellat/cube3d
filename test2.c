@@ -16,7 +16,7 @@ void    player_config()
     new_player.walk_direction = 0;
     new_player.rotation_angle = M_PI / 2;
     new_player.FOV_angle = M_PI / 3;
-    new_player.wall_width = 30;
+    new_player.wall_width = 1;
     new_player.Num_rays = width / new_player.wall_width;
     new_player.ray_angle = new_player.rotation_angle - new_player.FOV_angle / 2;
     wall_check = 0;
@@ -40,7 +40,7 @@ void    rays_directions()
     normalise_angle();
     new_player.ray_down = ((new_player.ray_angle) > 0 && (new_player.ray_angle < M_PI));
     new_player.ray_up = !(new_player.ray_down);
-    new_player.ray_left = ((new_player.ray_angle >=  M_PI) * 0.5 && (new_player.ray_angle <= M_PI * 1.5));
+    new_player.ray_left = ((new_player.ray_angle >=  M_PI * 0.5) && (new_player.ray_angle <= M_PI * 1.5));
     new_player.ray_right = !(new_player.ray_left);
 }
 
@@ -229,10 +229,10 @@ void    castAllRays()
     int     j;
 
     index = 0;
-    //new_player.ray_angle = new_player.rotation_angle - new_player.FOV_angle / 2;
+    new_player.ray_angle = new_player.rotation_angle - new_player.FOV_angle / 2;
     while(index < new_player.Num_rays)
     {
-        line(new_player.pos_x, new_player.pos_y,(new_player.ray_angle), new_player.Distance);
+        total_intesection_calcul();
         new_player.ray_angle += new_player.FOV_angle / new_player.Num_rays;
         index++;
     }
@@ -249,9 +249,9 @@ int     print_key(int key, void *param, void *win_ptr)
     //new_player.ray_angle = new_player.rotation_angle - new_player.FOV_angle / 2;
     g_mlx.img_ptr = mlx_new_image(g_mlx.mlx_ptr, height, width);
     g_mlx.img_data = (int *)mlx_get_data_addr(g_mlx.img_ptr, &k, &k, &k);
-    if(key == 65307)
+    if(key == 53)
         exit(1);
-    if(key == 65364)
+    if(key == 126)
     {
         if(ptr[(new_player.pos_y) / tile][new_player.pos_x / tile] == 0)
         {
@@ -262,7 +262,7 @@ int     print_key(int key, void *param, void *win_ptr)
             }
         }
     }
-    if(key == 65362)
+    if(key == 125)
     {
         if(ptr[new_player.pos_y / tile][new_player.pos_x / tile] == 0 )
         {
@@ -273,7 +273,7 @@ int     print_key(int key, void *param, void *win_ptr)
             }
         }
     }
-    if(key == 65361)
+    if(key == 123)
     {
         if(ptr[(new_player.pos_y ) / tile][(new_player.pos_x ) / tile ] == 0)
         {
@@ -281,7 +281,7 @@ int     print_key(int key, void *param, void *win_ptr)
             new_player.ray_angle += new_player.FOV_angle / new_player.Num_rays;
         }
     }
-    if(key == 65363)
+    if(key == 124)
     {
         if(ptr[new_player.pos_y / tile][(new_player.pos_x) / tile] == 0)
         {
@@ -291,17 +291,8 @@ int     print_key(int key, void *param, void *win_ptr)
     }
     map_draw();
     player_draw();
-    total_intesection_calcul();
+    castAllRays();
     mlx_put_image_to_window(g_mlx.mlx_ptr, g_mlx.win_ptr, g_mlx.img_ptr, 0, 0);
-    printf("%d\n", horzDistance);
-    printf("%d\n", verDistance);
-    printf("%d\n",new_player.Distance);
-    printf("%f\n",(new_player.ray_angle));
-    printf("%d\n",new_player.ray_up);
-    printf("%d\n",new_player.ray_down);
-    printf("%d\n",new_player.ray_left);
-    printf("%d\n",new_player.ray_right);
-    printf("\n");
     //mlx_destroy_image(g_mlx.mlx_ptr, g_mlx.img_ptr);
     return (0);
 }
@@ -324,7 +315,7 @@ int     main()
     // triangle draw
     player_config();
     player_draw();
-    total_intesection_calcul();
+    castAllRays();
     mlx_key_hook(g_mlx.win_ptr, print_key, (void *)0);
     mlx_put_image_to_window(g_mlx.mlx_ptr, g_mlx.win_ptr, g_mlx.img_ptr, 0, 0);
     mlx_loop(g_mlx.mlx_ptr);
