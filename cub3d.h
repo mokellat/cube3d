@@ -6,7 +6,7 @@
 /*   By: mokellat <mokellat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 18:39:11 by mokellat          #+#    #+#             */
-/*   Updated: 2020/03/14 20:27:53 by mokellat         ###   ########.fr       */
+/*   Updated: 2020/10/19 14:50:46 by mokellat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int     y;
 int     height;
 int     width;
 int     wall_check;
-int     tile;
+double     tile;
 int     nbr_rows;
 int     nbr_cols;
 int     xinteruptHorz;
@@ -52,8 +52,12 @@ int     verWallHitX;
 int     verWallHitY;
 int     horzDistance;
 int     verDistance;
+double     Distance;
 int     rayon;
-double     proof;
+double  proof;
+double  Mini_map_factoor;
+double  distanceProjPlane;
+double  wallStripHeight;
 
 int ptr[8][8]= {{1,1,1,1,1,1,1,1},
                      {1,0,0,0,0,0,0,1},
@@ -82,7 +86,6 @@ typedef struct  s_player
     bool    ray_right;
     int     wallHitX;
     int     wallHitY;
-    int     Distance;
     bool    wasHitVertical;
 }               t_player;
 
