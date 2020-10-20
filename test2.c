@@ -81,7 +81,7 @@ void horz_intersection_calcul()
         nextHorzTouchY--;
     while (nextHorzTouchY >= 0 && nextHorzTouchY <= height && nextHorzTouchX >= 0 && nextHorzTouchX <= width)
     {
-        if (ptr[nextHorzTouchY / tile][nextHorzTouchX / tile] == 1)
+        if (ptr[(int)(nextHorzTouchY / tile)][(int)(nextHorzTouchX / tile)] == 1)
         {
             foundAwallHorz = 1;
             horzWallHitY = nextHorzTouchY;
@@ -117,7 +117,7 @@ void ver_intersection_calcul()
         nextVerTouchX--;
     while (nextVerTouchY >= 0 && nextVerTouchY <= height && nextVerTouchX >= 0 && nextVerTouchX <= width)
     {
-        if (ptr[nextVerTouchY / tile][nextVerTouchX / tile] == 1)
+        if (ptr[(int)(nextVerTouchY / tile)][(int)(nextVerTouchX / tile)] == 1)
         {
             foundAwallVer = 1;
             verWallHitY = nextVerTouchY;
@@ -187,10 +187,11 @@ void project_3D_Draw()
     int index;
 
     index = 0;
+    distanceProjPlane = (width / 2) / tan(new_player.FOV_angle / 2);
+    wallStripHeight = (tile / Distance) * distanceProjPlane;
     while (index < new_player.Num_rays)
     {
-        total_intersection_3D(index);
-        index++;
+        total_intersection_3D(index++);
     }
 }
 
@@ -296,41 +297,41 @@ int print_key(int key, void *param, void *win_ptr)
     new_player.ray_angle = new_player.rotation_angle - new_player.FOV_angle / 2;
     g_mlx.img_ptr = mlx_new_image(g_mlx.mlx_ptr, height, width);
     g_mlx.img_data = (int *)mlx_get_data_addr(g_mlx.img_ptr, &k, &k, &k);
-    if (key == 53)
+    if (key == 65307)
         exit(1);
-    if (key == 126)
+    if (key == 65362)
     {
         if (ptr[(int)((new_player.pos_y) / tile)][(int)(new_player.pos_x / tile)] == 0)
         {
-            if (ptr[(int)((new_player.pos_y + 10) / tile][()new_player.pos_x / tile] != 1)
+            if (ptr[(int)((new_player.pos_y + 10) / tile)][(int)(new_player.pos_x / tile)] != 1)
             {
                 new_player.pos_y += y;
                 new_player.pos_x += x;
             }
         }
     }
-    if (key == 125)
+    if (key == 65364)
     {
-        if (ptr[new_player.pos_y / tile][new_player.pos_x / tile] == 0)
+        if (ptr[(int)(new_player.pos_y / tile)][(int)(new_player.pos_x / tile)] == 0)
         {
-            if (ptr[(new_player.pos_y - 10) / tile][new_player.pos_x / tile] != 1)
+            if (ptr[(int)((new_player.pos_y - 10) / tile)][(int)(new_player.pos_x / tile)] != 1)
             {
                 new_player.pos_y -= y;
                 new_player.pos_x -= x;
             }
         }
     }
-    if (key == 123)
+    if (key == 65361)
     {
-        if (ptr[(new_player.pos_y) / tile][(new_player.pos_x) / tile] == 0)
+        if (ptr[(int)((new_player.pos_y) / tile)][(int)((new_player.pos_x) / tile)] == 0)
         {
             new_player.rotation_angle += 0.3;
             new_player.ray_angle += new_player.FOV_angle / new_player.Num_rays;
         }
     }
-    if (key == 124)
+    if (key == 65363)
     {
-        if (ptr[new_player.pos_y / tile][(new_player.pos_x) / tile] == 0)
+        if (ptr[(int)(new_player.pos_y / tile)][(int)((new_player.pos_x) / tile)] == 0)
         {
             new_player.rotation_angle -= 0.3;
             new_player.ray_angle -= new_player.FOV_angle / new_player.Num_rays;

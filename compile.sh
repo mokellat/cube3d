@@ -1,1 +1,1 @@
-gcc *.c libmlx.a -lm -lX11 -lXext
+gcc *.c libmlx.a -lm -lX11 -lXext -g
