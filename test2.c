@@ -25,6 +25,7 @@ void player_config()
 
 void normalise_angle()
 {
+    //new_player.ray_angle = remainder(2 * M_PI, -2 * M_PI);
     if (new_player.ray_angle < 0)
         new_player.ray_angle += 2 * M_PI;
     if (new_player.ray_angle > 2 * M_PI)
@@ -53,9 +54,8 @@ void line(int x1, int y1, double angle, int var, int color)
     rayon = var;
     while (rayon--)
     {
-        proof = (angle);
-        j = (cos(proof) * rayon + x1) * Mini_map_factoor;
-        i = (sin(proof) * rayon + y1) * Mini_map_factoor;
+        j = (cos(angle) * rayon + x1) * Mini_map_factoor;
+        i = (sin(angle) * rayon + y1) * Mini_map_factoor;
         g_mlx.img_data[i * width + j] = color;
     }
 }
@@ -132,6 +132,31 @@ void ver_intersection_calcul()
     }
 }
 
+void rectangle_3D_draw(int x1, unsigned int y1, int x2, int y2) 
+{
+
+    int m;
+    int n;
+    int x;
+    int y;
+
+    x = x1;
+    y = y1;
+    m = y;
+    while (m < y2 + y && m < height)
+    {
+        n = x;
+        while (n < x2 + x && n < width)
+        {
+            g_mlx.img_data[m * width + n] = 0xFFFFFF;
+            n++;
+        }
+        m++;
+    }
+    x += x1;
+    y += y1;
+}
+
 void total_intesection_calcul()
 {
     //rays_directions();
@@ -147,28 +172,9 @@ void total_intesection_calcul()
     line(new_player.pos_x, new_player.pos_y, new_player.ray_angle, Distance, 0x0000FF);
 }
 
-void rectangle_3D_draw(int x1, int y1, int x2, int y2)
-{
-    int     i;
-    int     j;
-
-    i = y1;
-    j = x1;
-    while (i < y2)
-    {
-        j = x1;
-        while (j < x2)
-        {
-            g_mlx.img_data[i * width + j] = 0xFFFFFF;
-            j++;
-        }
-        i++;
-    }
-}
-
 void total_intersection_3D(int index)
 {
-    //data_gather();
+    data_gather();
     normalise_angle();
     horz_intersection_calcul();
     ver_intersection_calcul();
@@ -177,6 +183,7 @@ void total_intersection_3D(int index)
     new_player.wallHitX = (horzDistance < verDistance) ? horzWallHitX : verWallHitX;
     new_player.wallHitY = (horzDistance < verDistance) ? horzWallHitY : verWallHitY;
     Distance = (horzDistance < verDistance) ? horzDistance : verDistance;
+    new_player.wasHitVertical = (verDistance < horzDistance);
     distanceProjPlane = (width / 2) / tan(new_player.FOV_angle / 2);
     wallStripHeight = (tile / Distance) * distanceProjPlane;
     rectangle_3D_draw(new_player.wall_width * index, (height / 2) - (wallStripHeight / 2), new_player.wall_width, wallStripHeight);
@@ -187,11 +194,13 @@ void project_3D_Draw()
     int index;
 
     index = 0;
-    distanceProjPlane = (width / 2) / tan(new_player.FOV_angle / 2);
-    wallStripHeight = (tile / Distance) * distanceProjPlane;
+    new_player.ray_angle = new_player.rotation_angle - new_player.FOV_angle / 2;
     while (index < new_player.Num_rays)
     {
+        //distanceProjPlane = (width / 2) / tan(new_player.FOV_angle / 2);
+        //wallStripHeight = (tile / Distance) * distanceProjPlane;
         total_intersection_3D(index++);
+        new_player.ray_angle += new_player.FOV_angle / new_player.Num_rays;
     }
 }
 
@@ -202,10 +211,10 @@ void player_draw()
 
     i = new_player.pos_y * Mini_map_factoor;
     j = new_player.pos_x * Mini_map_factoor;
-    while (i < new_player.pos_y * Mini_map_factoor + 10)
+    while (i < (new_player.pos_y + 10) * Mini_map_factoor)
     {
         j = new_player.pos_x * Mini_map_factoor;
-        while (j < new_player.pos_x * Mini_map_factoor + 10)
+        while (j < (new_player.pos_x  + 10 ) * Mini_map_factoor )
         {
             g_mlx.img_data[i * width + j] = 0xFF0000;
             j++;
@@ -224,7 +233,6 @@ void map_draw()
     i = 0;
     j = 0;
     y = 0;
-    //data_gather();
     while (i < 8)
     {
         j = 0;
@@ -297,31 +305,31 @@ int print_key(int key, void *param, void *win_ptr)
     new_player.ray_angle = new_player.rotation_angle - new_player.FOV_angle / 2;
     g_mlx.img_ptr = mlx_new_image(g_mlx.mlx_ptr, height, width);
     g_mlx.img_data = (int *)mlx_get_data_addr(g_mlx.img_ptr, &k, &k, &k);
-    if (key == 65307)
+    if (key == 53)
         exit(1);
-    if (key == 65362)
+    if (key == 126)
     {
         if (ptr[(int)((new_player.pos_y) / tile)][(int)(new_player.pos_x / tile)] == 0)
         {
-            if (ptr[(int)((new_player.pos_y + 10) / tile)][(int)(new_player.pos_x / tile)] != 1)
+            if (ptr[(int)((new_player.pos_y + 10 * Mini_map_factoor) / tile)][(int)(new_player.pos_x / tile)] != 1)
             {
                 new_player.pos_y += y;
                 new_player.pos_x += x;
             }
         }
     }
-    if (key == 65364)
+    if (key == 125)
     {
-        if (ptr[(int)(new_player.pos_y / tile)][(int)(new_player.pos_x / tile)] == 0)
+        if (ptr[(int)(new_player.pos_y / tile)][(int)(new_player.pos_x / tile)] != 1)
         {
-            if (ptr[(int)((new_player.pos_y - 10) / tile)][(int)(new_player.pos_x / tile)] != 1)
+            if (ptr[(int)((new_player.pos_y - 10 * Mini_map_factoor) / tile)][(int)(new_player.pos_x / tile)] == 0)
             {
                 new_player.pos_y -= y;
                 new_player.pos_x -= x;
             }
         }
     }
-    if (key == 65361)
+    if (key == 123)
     {
         if (ptr[(int)((new_player.pos_y) / tile)][(int)((new_player.pos_x) / tile)] == 0)
         {
@@ -329,7 +337,7 @@ int print_key(int key, void *param, void *win_ptr)
             new_player.ray_angle += new_player.FOV_angle / new_player.Num_rays;
         }
     }
-    if (key == 65363)
+    if (key == 124)
     {
         if (ptr[(int)(new_player.pos_y / tile)][(int)((new_player.pos_x) / tile)] == 0)
         {
@@ -339,11 +347,10 @@ int print_key(int key, void *param, void *win_ptr)
     }
     map_draw();
     player_draw();
-    line(new_player.pos_x, new_player.pos_y, new_player.rotation_angle, 50, 0xFF0000);
-    project_3D_Draw();
+    //line(new_player.pos_x, new_player.pos_y, new_player.rotation_angle, 50, 0xFF0000);
     castAllRays();
+    project_3D_Draw();
     mlx_put_image_to_window(g_mlx.mlx_ptr, g_mlx.win_ptr, g_mlx.img_ptr, 0, 0);
-    // printf("%d\n", new_player.Distance);
     //mlx_destroy_image(g_mlx.mlx_ptr, g_mlx.img_ptr);
     return (0);
 }
@@ -366,9 +373,9 @@ int main()
     // triangle draw
     player_config();
     player_draw();
-    line(new_player.pos_x, new_player.pos_y, new_player.rotation_angle, 50, 0xFF0000);
-    project_3D_Draw();
+    //line(new_player.pos_x, new_player.pos_y, new_player.rotation_angle, 50, 0xFF0000);
     castAllRays();
+    project_3D_Draw();
     mlx_key_hook(g_mlx.win_ptr, print_key, (void *)0);
     mlx_put_image_to_window(g_mlx.mlx_ptr, g_mlx.win_ptr, g_mlx.img_ptr, 0, 0);
     mlx_loop(g_mlx.mlx_ptr);
