@@ -6,7 +6,7 @@
 /*   By: mokellat <mokellat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 18:39:11 by mokellat          #+#    #+#             */
-/*   Updated: 2020/10/21 12:20:29 by mokellat         ###   ########.fr       */
+/*   Updated: 2020/10/28 17:49:01 by mokellat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 #include "mlx.h"
 #include <stdbool.h>
 #include <math.h>
+#include "./ft_printf/libftprintf.h"
 
 int x;
 int y;
@@ -58,14 +59,15 @@ double proof;
 double Mini_map_factoor;
 double distanceProjPlane;
 double wallStripHeight;
+int colorShading;
 
 int ptr[8][8] = {{1, 1, 1, 1, 1, 1, 1, 1},
                  {1, 1, 1, 1, 1, 1, 1, 1},
                  {1, 0, 0, 0, 0, 1, 0, 1},
                  {1, 0, 0, 0, 0, 0, 0, 1},
                  {1, 1, 0, 0, 0, 0, 1, 1},
-                 {1, 1, 1, 1, 1, 1, 1, 1},
-                 {1, 1, 1, 1, 1, 1, 1, 1},
+                 {1, 0, 1, 0, 0, 1, 0, 1},
+                 {1, 0, 1, 0, 1, 0, 0, 1},
                  {1, 1, 1, 1, 1, 1, 1, 1}};
 
 typedef struct s_player

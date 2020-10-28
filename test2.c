@@ -132,13 +132,14 @@ void ver_intersection_calcul()
     }
 }
 
-void rectangle_3D_draw(int x1, unsigned int y1, int x2, int y2) 
+void rectangle_3D_draw(int x1, unsigned int y1, int x2, int y2, int color) 
 {
 
     int m;
     int n;
     int x;
     int y;
+    t_flagcheck flags;
 
     x = x1;
     y = y1;
@@ -148,7 +149,7 @@ void rectangle_3D_draw(int x1, unsigned int y1, int x2, int y2)
         n = x;
         while (n < x2 + x && n < width)
         {
-            g_mlx.img_data[m * width + n] = 0xFFFFFF;
+            g_mlx.img_data[m * width + n] = color;
             n++;
         }
         m++;
@@ -174,6 +175,8 @@ void total_intesection_calcul()
 
 void total_intersection_3D(int index)
 {
+    double correctDistance;
+
     data_gather();
     normalise_angle();
     horz_intersection_calcul();
@@ -184,9 +187,11 @@ void total_intersection_3D(int index)
     new_player.wallHitY = (horzDistance < verDistance) ? horzWallHitY : verWallHitY;
     Distance = (horzDistance < verDistance) ? horzDistance : verDistance;
     new_player.wasHitVertical = (verDistance < horzDistance);
+    correctDistance = Distance * cos(new_player.ray_angle - new_player.rotation_angle);
     distanceProjPlane = (width / 2) / tan(new_player.FOV_angle / 2);
-    wallStripHeight = (tile / Distance) * distanceProjPlane;
-    rectangle_3D_draw(new_player.wall_width * index, (height / 2) - (wallStripHeight / 2), new_player.wall_width, wallStripHeight);
+    wallStripHeight = (tile / correctDistance) * distanceProjPlane;
+    colorShading = (horzDistance < verDistance) ? 0xFFFFFF : 0xC8C5C5;
+    rectangle_3D_draw(new_player.wall_width * index, (height / 2) - (wallStripHeight / 2), new_player.wall_width, wallStripHeight, colorShading);
 }
 
 void project_3D_Draw()
@@ -197,8 +202,6 @@ void project_3D_Draw()
     new_player.ray_angle = new_player.rotation_angle - new_player.FOV_angle / 2;
     while (index < new_player.Num_rays)
     {
-        //distanceProjPlane = (width / 2) / tan(new_player.FOV_angle / 2);
-        //wallStripHeight = (tile / Distance) * distanceProjPlane;
         total_intersection_3D(index++);
         new_player.ray_angle += new_player.FOV_angle / new_player.Num_rays;
     }
@@ -333,7 +336,7 @@ int print_key(int key, void *param, void *win_ptr)
     {
         if (ptr[(int)((new_player.pos_y) / tile)][(int)((new_player.pos_x) / tile)] == 0)
         {
-            new_player.rotation_angle += 0.3;
+            new_player.rotation_angle += 0.2;
             new_player.ray_angle += new_player.FOV_angle / new_player.Num_rays;
         }
     }
@@ -341,28 +344,23 @@ int print_key(int key, void *param, void *win_ptr)
     {
         if (ptr[(int)(new_player.pos_y / tile)][(int)((new_player.pos_x) / tile)] == 0)
         {
-            new_player.rotation_angle -= 0.3;
+            new_player.rotation_angle -= 0.2;
             new_player.ray_angle -= new_player.FOV_angle / new_player.Num_rays;
         }
     }
     map_draw();
     player_draw();
-    //line(new_player.pos_x, new_player.pos_y, new_player.rotation_angle, 50, 0xFF0000);
+    line(new_player.pos_x, new_player.pos_y, new_player.rotation_angle, 50, 0xFF0000);
     castAllRays();
     project_3D_Draw();
     mlx_put_image_to_window(g_mlx.mlx_ptr, g_mlx.win_ptr, g_mlx.img_ptr, 0, 0);
-    //mlx_destroy_image(g_mlx.mlx_ptr, g_mlx.img_ptr);
     return (0);
 }
 
 int main()
 {
     int k;
-    int i;
-    int j;
-    int m;
-    int n;
-
+    
     data_gather();
     g_mlx.mlx_ptr = mlx_init();
     g_mlx.win_ptr = mlx_new_window(g_mlx.mlx_ptr, height, width, "cub3d");
@@ -373,7 +371,7 @@ int main()
     // triangle draw
     player_config();
     player_draw();
-    //line(new_player.pos_x, new_player.pos_y, new_player.rotation_angle, 50, 0xFF0000);
+    line(new_player.pos_x, new_player.pos_y, new_player.rotation_angle, 50, 0xFF0000);
     castAllRays();
     project_3D_Draw();
     mlx_key_hook(g_mlx.win_ptr, print_key, (void *)0);
