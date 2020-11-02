@@ -6,7 +6,7 @@
 /*   By: mokellat <mokellat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 18:39:11 by mokellat          #+#    #+#             */
-/*   Updated: 2020/10/28 17:49:01 by mokellat         ###   ########.fr       */
+/*   Updated: 2020/11/02 14:45:17 by mokellat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,14 @@
 #include "mlx.h"
 #include <stdbool.h>
 #include <math.h>
-#include "./ft_printf/libftprintf.h"
+//#include "./ft_printf/libftprintf.h"
 
 int x;
 int y;
 int height;
 int width;
 int wall_check;
-double tile;
+int tile;
 int nbr_rows;
 int nbr_cols;
 double xinteruptHorz;
@@ -60,7 +60,16 @@ double Mini_map_factoor;
 double distanceProjPlane;
 double wallStripHeight;
 int colorShading;
-
+int     textureHeight;
+int     textureWidth;
+ double  correctDistance;
+int     wallTopPixel;
+int     wallBottomPixel;
+int     textureOffSetY;
+int    textureOffSetX;
+int     textIndex;
+int     DistanceFromTop;
+     
 int ptr[8][8] = {{1, 1, 1, 1, 1, 1, 1, 1},
                  {1, 1, 1, 1, 1, 1, 1, 1},
                  {1, 0, 0, 0, 0, 1, 0, 1},
@@ -99,7 +108,8 @@ typedef struct s_mlx
     void *win_ptr;
     void *img_ptr;
     int *img_data;
-
+    void *texture_xpm;
+    int *redbrick_data;
 } t_mlx;
 t_mlx g_mlx;
 #endif

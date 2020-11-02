@@ -6,6 +6,8 @@ void data_gather()
     tile = 100;
     width = tile * 8;
     height = tile * 8;
+    textureHeight = tile;
+    textureWidth = tile;
 }
 
 void player_config()
@@ -132,35 +134,37 @@ void ver_intersection_calcul()
     }
 }
 
-void rectangle_3D_draw(int x1, unsigned int y1, int x2, int y2, int color) 
+/*void rectangle_3D_draw(int x1, unsigned int y1, int x2, int y2, int color) 
 {
 
     int m;
     int n;
     int x;
     int y;
-    t_flagcheck flags;
 
     x = x1;
     y = y1;
     m = y;
     while (m < y2 + y && m < height)
     {
+        (m < 0) ? (m = 0) : m;
         n = x;
         while (n < x2 + x && n < width)
         {
-            g_mlx.img_data[m * width + n] = color;
+             (n < 0) ? (n = 0) : n;
+            g_mlx.img_data[m * width + n] = 0xFFFFFF;
             n++;
         }
         m++;
     }
     x += x1;
     y += y1;
-}
+}*/
 
 void total_intesection_calcul()
 {
     //rays_directions();
+    data_gather();
     normalise_angle();
     horz_intersection_calcul();
     ver_intersection_calcul();
@@ -171,12 +175,22 @@ void total_intesection_calcul()
     Distance = (horzDistance < verDistance) ? horzDistance : verDistance;
     new_player.wasHitVertical = (verDistance < horzDistance);
     line(new_player.pos_x, new_player.pos_y, new_player.ray_angle, Distance, 0x0000FF);
+
+}
+
+void texture_work()
+{
+    int k;
+    
+    g_mlx.texture_xpm = mlx_xpm_file_to_image(g_mlx.mlx_ptr, "redbrick.xpm", &textureHeight, &textureWidth);
+    g_mlx.redbrick_data = (int *) mlx_get_data_addr(g_mlx.texture_xpm, &k, &k, &k);
 }
 
 void total_intersection_3D(int index)
 {
-    double correctDistance;
+    int y;
 
+    texture_work();
     data_gather();
     normalise_angle();
     horz_intersection_calcul();
@@ -189,9 +203,30 @@ void total_intersection_3D(int index)
     new_player.wasHitVertical = (verDistance < horzDistance);
     correctDistance = Distance * cos(new_player.ray_angle - new_player.rotation_angle);
     distanceProjPlane = (width / 2) / tan(new_player.FOV_angle / 2);
-    wallStripHeight = (tile / correctDistance) * distanceProjPlane;
-    colorShading = (horzDistance < verDistance) ? 0xFFFFFF : 0xC8C5C5;
-    rectangle_3D_draw(new_player.wall_width * index, (height / 2) - (wallStripHeight / 2), new_player.wall_width, wallStripHeight, colorShading);
+    wallStripHeight = ((tile / correctDistance) * distanceProjPlane);
+    wallTopPixel =  (height / 2) - (wallStripHeight / 2);
+    wallBottomPixel =  (height / 2) + (wallStripHeight / 2);
+    textureOffSetX = (new_player.wasHitVertical) ? (int) new_player.wallHitY % tile : (int) new_player.wallHitX % tile ;
+    y = 0;
+    while(y < wallTopPixel)
+    {
+        g_mlx.img_data[width * y + index] = 0xFFFFFF;
+        y++;
+    }
+    y = wallTopPixel;
+    while (y < wallBottomPixel )
+    {
+        DistanceFromTop = y + (wallStripHeight / 2) - (height / 2);
+        textureOffSetY = DistanceFromTop * ((double)(textureHeight / wallStripHeight));
+        colorShading = g_mlx.redbrick_data[(int)((textureWidth * textureOffSetY) + textureOffSetX)];
+        g_mlx.img_data[(width * y++) + index] = colorShading;
+    }
+    y = wallBottomPixel;
+    while (y < height)
+    {
+        g_mlx.img_data[width * y + index] = 0xA79D9D;
+        y++;
+    }
 }
 
 void project_3D_Draw()
