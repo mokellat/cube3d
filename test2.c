@@ -210,11 +210,11 @@ void total_intersection_3D(int index)
     y = 0;
     while(y < wallTopPixel)
     {
-        g_mlx.img_data[width * y + index] = 0xFFFFFF;
+        g_mlx.img_data[width * y + index] = 0xb0e0e6;
         y++;
     }
     y = wallTopPixel;
-    while (y < wallBottomPixel )
+    while (y < wallBottomPixel && textureOffSetX < height && textureOffSetY >= 0)
     {
         DistanceFromTop = y + (wallStripHeight / 2) - (height / 2);
         textureOffSetY = DistanceFromTop * ((double)(textureHeight / wallStripHeight));

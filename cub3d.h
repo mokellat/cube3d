@@ -6,7 +6,7 @@
 /*   By: mokellat <mokellat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 18:39:11 by mokellat          #+#    #+#             */
-/*   Updated: 2020/11/02 14:45:17 by mokellat         ###   ########.fr       */
+/*   Updated: 2020/11/04 11:01:29 by mokellat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,12 +62,11 @@ double wallStripHeight;
 int colorShading;
 int     textureHeight;
 int     textureWidth;
- double  correctDistance;
+double  correctDistance;
 int     wallTopPixel;
 int     wallBottomPixel;
 int     textureOffSetY;
 int    textureOffSetX;
-int     textIndex;
 int     DistanceFromTop;
      
 int ptr[8][8] = {{1, 1, 1, 1, 1, 1, 1, 1},
