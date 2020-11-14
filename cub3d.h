@@ -6,7 +6,7 @@
 /*   By: mokellat <mokellat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 18:39:11 by mokellat          #+#    #+#             */
-/*   Updated: 2020/11/07 19:15:43 by mokellat         ###   ########.fr       */
+/*   Updated: 2020/11/14 19:36:31 by mokellat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,12 @@ int		g_textureoffsety;
 int		g_textureoffsetx;
 int		g_distancefromtop;
 int		g_move_speed;
+double	g_move_step;
+int		tilecolor;
+int		tilex;
+int		tiley;
 
-int ptr[8][8] =	{{1, 1, 1, 1, 1, 1, 1, 1},
+static int ptr[8][8] =	{{1, 1, 1, 1, 1, 1, 1, 1},
 				{1, 1, 1, 1, 1, 1, 1, 1},
 				{1, 0, 0, 0, 0, 1, 0, 1},
 				{1, 0, 0, 0, 0, 0, 0, 1},
@@ -93,8 +97,7 @@ typedef struct	s_player
 	bool	wasHitVertical;
 	int		turn_direction;
 	int		walk_direction;
-	double	move_speed;
-	int		rotation_speed;
+	double	rotation_speed;
 }	t_player;
 t_player	g_new_player;
 typedef struct	s_mlx
@@ -107,4 +110,30 @@ typedef struct	s_mlx
 	int		*redbrick_data;
 }	t_mlx;
 t_mlx		g_mlx;
+////////////////////////////////////////////////////////////////
+void	data_gather();
+void	player_config();
+void	normalise_angle();
+double	distance_between(int x1, int y1, int x2, int y2);
+int		haswallat(double x, double y);
+void	rays_directions();
+void	line(int x1, int y1, double angle, int var, int color);
+void	horz_intersection_calcul();
+void	ver_intersection_calcul();
+void	total_intesection_calcul();
+void	total_intersection_3D(int index);
+void	project_3D_Draw();
+void	player_draw();
+int		drawing_cub_walls();
+void	Map();
+void	castAllRays();
+int		key_pressed(int key ,void *param, void *wind_ptr);
+int		key_released(int key);
+int		update();
+void	help_inter_horz();
+void	help_inter_ver();
+///////////////////////////////////////////////////////////////
+#include <time.h>
+clock_t b;
+#define TIME(x) b = clock(); x printf("time taken: %lf\n", ((double)(clock() - b) * (CLOCKS_PER_SEC / 1000000) /1000));
 #endif
