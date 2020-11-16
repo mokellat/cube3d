@@ -57,12 +57,18 @@ int		update()
 	g_mlx.img_data = (int *)mlx_get_data_addr(g_mlx.img_ptr, &k, &k, &k);
 	g_new_player.rotation_angle += g_new_player.turn_direction * g_new_player.rotation_speed;
 	move_step = g_new_player.walk_direction * g_move_speed;
-	if (!haswallat(g_new_player.pos_x , g_new_player.pos_y ))
+	if (!haswallat(g_new_player.pos_x, g_new_player.pos_y))
 	{
-		g_new_player.pos_x += cosf(g_new_player.rotation_angle) * g_new_player.walk_direction * move_speed;
-		g_new_player.pos_y += sinf(g_new_player.rotation_angle) * g_new_player.walk_direction * move_speed;
+		if (!haswallat(g_new_player.pos_x - 5 , g_new_player.pos_y  - 5))
+		{
+			g_new_player.pos_x += cosf(g_new_player.rotation_angle) * g_new_player.walk_direction * move_speed;
+			g_new_player.pos_y += sinf(g_new_player.rotation_angle) * g_new_player.walk_direction * move_speed;
+		}
 	}
-	project_3D_Draw();
+	Map();
+	player_draw();
+	line(g_new_player.pos_x, g_new_player.pos_y, g_new_player.rotation_angle, 50, 0XFF0000);
+	//project_3D_Draw();
 	mlx_put_image_to_window(g_mlx.mlx_ptr, g_mlx.win_ptr, g_mlx.img_ptr, 0, 0);
 	return 0;
 }

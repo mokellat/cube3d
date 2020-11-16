@@ -6,7 +6,7 @@
 /*   By: mokellat <mokellat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 18:39:11 by mokellat          #+#    #+#             */
-/*   Updated: 2020/11/14 19:36:31 by mokellat         ###   ########.fr       */
+/*   Updated: 2020/11/15 12:30:22 by mokellat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 #include "mlx.h"
 #include <stdbool.h>
 #include <math.h>
+#include "./get_next_line/get_next_line.h"
 
 int		g_height;
 int		g_width;
