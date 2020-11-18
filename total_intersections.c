@@ -26,8 +26,8 @@ void	walls_draw(int y, int index)
 		g_textureoffsety = g_textureoffsety < 0 ? 0 : g_textureoffsety;
 		g_colorshading = g_mlx.redbrick_data[(int)((g_texturewidth * g_textureoffsety) + g_textureoffsetx)];
 		int tst = (int)((g_width * y++) + index);
-		//printf("debug %d	%d	\n", y, tst);
-		g_mlx.img_data[tst] = g_colorshading;
+		if(tst > 0 && tst <= g_height * g_width)
+			g_mlx.img_data[tst] = g_colorshading;
 	}
 }
 
@@ -42,6 +42,7 @@ void	total_intersection_3D(int index)
 	g_walltoppixel =  (g_height / 2) - (g_wallstripg_height / 2);
 	g_wallbottompixel =  (g_height / 2) + (g_wallstripg_height / 2);
 	g_wallbottompixel = (g_wallbottompixel > g_height) ? g_height : g_wallbottompixel;
+	//g_wallbottompixel = (g_wallbottompixel < 0) ? 0 : g_wallbottompixel;
 	g_textureoffsetx = (g_new_player.wasHitVertical) ? (int) g_new_player.wallHitY % g_tile : (int) g_new_player.wallHitX % g_tile ;
 	y = 0;
 	while(y < g_walltoppixel)
