@@ -22,10 +22,12 @@ void	walls_draw(int y, int index)
 	while (y < g_wallbottompixel)
 	{
 		g_distancefromtop = y + (g_wallstripg_height / 2) - (g_height / 2);
-		g_textureoffsety = g_distancefromtop * ((float)(g_textureheight / g_wallstripg_height));
-		g_textureoffsety = (g_textureoffsety < 0) ? 0 : g_textureoffsety;
+		g_textureoffsety = g_distancefromtop * ((double)(g_textureheight / g_wallstripg_height));
+		g_textureoffsety = g_textureoffsety < 0 ? 0 : g_textureoffsety;
 		g_colorshading = g_mlx.redbrick_data[(int)((g_texturewidth * g_textureoffsety) + g_textureoffsetx)];
-		g_mlx.img_data[(int)((g_width * y++) + index)] = g_colorshading;
+		int tst = (int)((g_width * y++) + index);
+		//printf("debug %d	%d	\n", y, tst);
+		g_mlx.img_data[tst] = g_colorshading;
 	}
 }
 

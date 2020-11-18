@@ -13,7 +13,7 @@ void	data_gather()
 void	player_config()
 {
 	data_gather();
-	g_new_player.rotation_speed = 3 * (M_PI / 180);
+	g_new_player.rotation_speed = 2 * (M_PI / 180);
 	g_new_player.turn_direction = 0;
 	g_new_player.walk_direction = 0;
 	g_new_player.pos_x = g_width / 2;

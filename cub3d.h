@@ -6,7 +6,7 @@
 /*   By: mokellat <mokellat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 18:39:11 by mokellat          #+#    #+#             */
-/*   Updated: 2020/11/15 12:30:22 by mokellat         ###   ########.fr       */
+/*   Updated: 2020/11/18 12:50:50 by mokellat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 #include "mlx.h"
 #include <stdbool.h>
 #include <math.h>
+#include <time.h>
 #include "./get_next_line/get_next_line.h"
 
 int		g_height;
@@ -64,7 +65,6 @@ int		g_wallbottompixel;
 int		g_textureoffsety;
 int		g_textureoffsetx;
 int		g_distancefromtop;
-int		g_move_speed;
 double	g_move_step;
 int		tilecolor;
 int		tilex;
@@ -99,6 +99,8 @@ typedef struct	s_player
 	int		turn_direction;
 	int		walk_direction;
 	double	rotation_speed;
+	double	new_pos_x;
+	double	new_pos_y;
 }	t_player;
 t_player	g_new_player;
 typedef struct	s_mlx
@@ -112,6 +114,7 @@ typedef struct	s_mlx
 }	t_mlx;
 t_mlx		g_mlx;
 ////////////////////////////////////////////////////////////////
+
 void	data_gather();
 void	player_config();
 void	normalise_angle();
@@ -133,8 +136,8 @@ int		key_released(int key);
 int		update();
 void	help_inter_horz();
 void	help_inter_ver();
+
 ///////////////////////////////////////////////////////////////
-#include <time.h>
 clock_t b;
-#define TIME(x) b = clock(); x printf("time taken: %lf\n", ((double)(clock() - b) * (CLOCKS_PER_SEC / 1000000) /1000));
+#define TIME(x) b = clock(); x /*printf("time taken: %lf\n", ((double)(clock() - b) * (CLOCKS_PER_SEC / 1000000) /1000))*/;
 #endif
