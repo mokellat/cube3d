@@ -6,7 +6,7 @@
 /*   By: mokellat <mokellat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 18:39:11 by mokellat          #+#    #+#             */
-/*   Updated: 2020/11/18 12:50:50 by mokellat         ###   ########.fr       */
+/*   Updated: 2020/11/19 14:00:25 by mokellat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,7 +131,7 @@ void	player_draw();
 int		drawing_cub_walls();
 void	Map();
 void	castAllRays();
-int		key_pressed(int key ,void *param, void *wind_ptr);
+int		key_pressed(int key);
 int		key_released(int key);
 int		update();
 void	help_inter_horz();
