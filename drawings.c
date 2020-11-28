@@ -14,9 +14,9 @@ void	line(int x1, int y1, double angle, int var, int color)
 	}
 }
 
-void	player_draw()
+void	player_draw(double y, double x, int color)
 {
-	g_mlx.img_data[(int)g_new_player.pos_y* g_width + (int)g_new_player.pos_x] = 0xFF0000;
+	g_mlx.img_data[(int)y * g_width + (int)x] = color;
 }
 
 int		drawing_cub_walls()

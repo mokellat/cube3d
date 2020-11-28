@@ -8,6 +8,8 @@ SRC = drawings.c\
 		intersections.c\
 		keys_update.c\
 		total_intersections.c\
+		sprite.c\
+		texture_choose.c\
 		main.c\
 		get_next_line/get_next_line_utils.c\
 		get_next_line/get_next_line.c\
@@ -15,7 +17,8 @@ SRC = drawings.c\
 all : $(NAME)
 
 $(NAME): $(SRC) cub3d.h
-	$(CC) $(SRC)
+	cd Libft; make;
+	$(CC) $(SRC) ./Libft/libft.a
 
 clean :
 	rm -rf $(OBJECT)

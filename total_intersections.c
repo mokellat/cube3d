@@ -24,7 +24,7 @@ void	walls_draw(int y, int index)
 		g_distancefromtop = y + (g_wallstripg_height / 2) - (g_height / 2);
 		g_textureoffsety = g_distancefromtop * ((double)(g_textureheight / g_wallstripg_height));
 		g_textureoffsety = g_textureoffsety < 0 ? 0 : g_textureoffsety;
-		g_colorshading = g_mlx.redbrick_data[(int)((g_texturewidth * g_textureoffsety) + g_textureoffsetx)];
+		g_colorshading = g_tex.grey_stone_data[(int)((g_texturewidth * g_textureoffsety) + g_textureoffsetx)];
 		int tst = (int)((g_width * y++) + index);
 		if(tst > 0 && tst < g_height * g_width)
 			g_mlx.img_data[tst] = g_colorshading;
@@ -58,6 +58,7 @@ void	total_intersection_3D(int index)
 		g_mlx.img_data[g_width * y + index] = 0xA79D9D;
 		y++;
 	}
+	render_sprite();
 }
 
 void	castAllRays()

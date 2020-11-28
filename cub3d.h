@@ -6,7 +6,7 @@
 /*   By: mokellat <mokellat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 18:39:11 by mokellat          #+#    #+#             */
-/*   Updated: 2020/11/19 14:00:25 by mokellat         ###   ########.fr       */
+/*   Updated: 2020/11/28 18:39:21 by mokellat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,11 @@
 #include <stdbool.h>
 #include <math.h>
 #include <time.h>
+#include <fcntl.h>
 #include "./get_next_line/get_next_line.h"
+#include "sprites_textures.h"
+#include "parsing.h"
+#include "./Libft/libft.h"
 
 int		g_height;
 int		g_width;
@@ -66,17 +70,17 @@ int		g_textureoffsety;
 int		g_textureoffsetx;
 int		g_distancefromtop;
 double	g_move_step;
-int		tilecolor;
 int		tilex;
 int		tiley;
+int		tilecolor;
 
 static int ptr[8][8] =	{{1, 1, 1, 1, 1, 1, 1, 1},
 				{1, 1, 1, 1, 1, 1, 1, 1},
 				{1, 0, 0, 0, 0, 1, 0, 1},
 				{1, 0, 0, 0, 0, 0, 0, 1},
-				{1, 1, 0, 0, 0, 0, 1, 1},
-				{1, 0, 1, 0, 0, 1, 0, 1},
-				{1, 0, 1, 0, 1, 0, 0, 1},
+				{1, 2, 0, 0, 0, 0, 1, 1},
+				{1, 0, 1, 0, 0, 2, 0, 1},
+				{1, 0, 1, 0, 2, 0, 0, 1},
 				{1, 1, 1, 1, 1, 1, 1, 1}};
 
 typedef struct	s_player
@@ -109,8 +113,6 @@ typedef struct	s_mlx
 	void	*win_ptr;
 	void	*img_ptr;
 	int		*img_data;
-	void	*texture_xpm;
-	int		*redbrick_data;
 }	t_mlx;
 t_mlx		g_mlx;
 ////////////////////////////////////////////////////////////////
@@ -127,7 +129,7 @@ void	ver_intersection_calcul();
 void	total_intesection_calcul();
 void	total_intersection_3D(int index);
 void	project_3D_Draw();
-void	player_draw();
+void	player_draw(double y, double x, int color);
 int		drawing_cub_walls();
 void	Map();
 void	castAllRays();
@@ -136,6 +138,7 @@ int		key_released(int key);
 int		update();
 void	help_inter_horz();
 void	help_inter_ver();
+
 
 ///////////////////////////////////////////////////////////////
 clock_t b;
