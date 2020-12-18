@@ -52,12 +52,12 @@ void	Map()
         {
             tilex = j * g_tile;
             tiley = i * g_tile;
-            if (ptr[i][j] == 1)
+            if (ptr[i][j] == '1')
             {
                 tilecolor = 0x000000;
                 drawing_cub_walls();
             }
-            else if (ptr[i][j] == 0)
+            else if (ptr[i][j] == '0')
             {
                 tilecolor = 0xFFFFFF;
                 drawing_cub_walls();

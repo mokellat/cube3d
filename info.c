@@ -52,7 +52,7 @@ int		haswallat(double x, double y)
     mapindex_x = (x / g_tile);
     mapindex_y = (y / g_tile);
 
-    if (ptr[mapindex_y][mapindex_x] != 0)
+    if (ptr[mapindex_y][mapindex_x] != '0')
         return(1);
     return (0);
 }

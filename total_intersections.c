@@ -16,6 +16,20 @@ void	total_intesection_calcul()
 	//line(g_new_player.pos_x, g_new_player.pos_y, g_new_player.ray_angle, g_distance,0xFF0000);
 }
 
+
+int textures_directions()
+{
+	if(g_new_player.ray_up && g_new_player.wasHitVertical)
+		return (g_tex.redbrick_data[(int)((g_texturewidth * g_textureoffsety) + g_textureoffsetx)]);
+	else if(g_new_player.ray_down && g_new_player.wasHitVertical)
+		return(g_tex.redbrick_data2[(int)((g_texturewidth * g_textureoffsety) + g_textureoffsetx)]);
+	else if(g_new_player.ray_left && g_new_player.wasHitVertical)
+		return(g_tex.grey_stone_data[(int)((g_texturewidth * g_textureoffsety) + g_textureoffsetx)]);
+	else
+		return(g_tex.eagle_data[(int)((g_texturewidth * g_textureoffsety) + g_textureoffsetx)]);
+}
+
+
 void	walls_draw(int y, int index)
 {
 	y = g_walltoppixel;
@@ -24,7 +38,14 @@ void	walls_draw(int y, int index)
 		g_distancefromtop = y + (g_wallstripg_height / 2) - (g_height / 2);
 		g_textureoffsety = g_distancefromtop * ((double)(g_textureheight / g_wallstripg_height));
 		g_textureoffsety = g_textureoffsety < 0 ? 0 : g_textureoffsety;
-		g_colorshading = g_tex.grey_stone_data[(int)((g_texturewidth * g_textureoffsety) + g_textureoffsetx)];
+		if(g_new_player.ray_up && !g_new_player.wasHitVertical)
+			g_colorshading = (g_tex.redbrick_data[(int)((g_texturewidth * g_textureoffsety) + g_textureoffsetx)]);
+		else if(g_new_player.ray_down && !g_new_player.wasHitVertical)
+			g_colorshading = (g_tex.redbrick_data2[(int)((g_texturewidth * g_textureoffsety) + g_textureoffsetx)]);
+		else if(g_new_player.ray_left && g_new_player.wasHitVertical)
+			g_colorshading = (g_tex.grey_stone_data[(int)((g_texturewidth * g_textureoffsety) + g_textureoffsetx)]);
+		else if(g_new_player.ray_right && g_new_player.wasHitVertical)
+			g_colorshading = (g_tex.eagle_data[(int)((g_texturewidth * g_textureoffsety) + g_textureoffsetx)]);
 		int tst = (int)((g_width * y++) + index);
 		if(tst > 0 && tst < g_height * g_width)
 			g_mlx.img_data[tst] = g_colorshading;
@@ -61,7 +82,8 @@ void	total_intersection_3D(int index)
 	render_sprite();
 }
 
-void	castAllRays()
+
+/*void	castAllRays()
 {
 	int index;
 
@@ -73,4 +95,4 @@ void	castAllRays()
 		g_new_player.ray_angle += g_new_player.FOV_angle / g_new_player.Num_rays;
 		index++;
 	}
-}
+}*/
