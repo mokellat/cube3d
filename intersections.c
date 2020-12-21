@@ -13,7 +13,7 @@ void	help_inter_horz()
 {
 	while (g_nexthorztouchy >= 0 && g_nexthorztouchy <= g_height && g_nexthorztouchx >= 0 && g_nexthorztouchx <= g_width)
 	{
-		if (haswallat(g_nexthorztouchx, g_nexthorztouchy))
+		if (haswallat(g_nexthorztouchx , g_nexthorztouchy ))
 		{
 			g_foundawallhorz = 1;
 			g_horzwallhity = g_nexthorztouchy;
@@ -32,7 +32,7 @@ void	help_inter_ver()
 {
 	while (g_nextvertouchy >= 0 && g_nextvertouchy <= g_height && g_nextvertouchx >= 0 && g_nextvertouchx <= g_width)
 	{
-		if (haswallat(g_nextvertouchx, g_nextvertouchy))
+		if (haswallat(g_nextvertouchx, g_nextvertouchy ))
 		{
 			g_foundawallver = 1;
 			g_verwallhity = g_nextvertouchy;

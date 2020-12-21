@@ -43,8 +43,8 @@ double	distance_between(int x1, int y1, int x2, int y2)
 
 int		haswallat(double x, double y)
 {
-    int     mapindex_x;
-    int     mapindex_y;
+    double     mapindex_x;
+    double     mapindex_y;
 
 
     if (x < 0 || x > g_width || y < 0 || y > g_height)
@@ -52,7 +52,7 @@ int		haswallat(double x, double y)
     mapindex_x = (x / g_tile);
     mapindex_y = (y / g_tile);
 
-    if (ptr[mapindex_y][mapindex_x] != '0')
+    if (ptr[(int)mapindex_y][(int)mapindex_x] != '0')
         return(1);
     return (0);
 }
