@@ -11,6 +11,8 @@ SRC = drawings.c\
 		sprite.c\
 		texture_choose.c\
 		rgb.c\
+		map_parsing.c\
+		utils.c\
 		main.c\
 		get_next_line/colors.c\
 		get_next_line/get_next_line.c\
