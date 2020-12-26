@@ -14,7 +14,7 @@ int	map_parsing()
 		{
 			if(check_map_elements())
 			{
-				if(check_map_errors() && map_surronding())
+				if(map_surronding() && check_map_errors())
 				{
 					puts("correct : 1");
 					return (1);
@@ -74,8 +74,7 @@ int	check_map_errors()
 				if((g_map[i][j + 1] == ' ' || g_map[i][j - 1] == ' ' || g_map[i + 1][j] == ' '
 				|| g_map[i - 1][j] == ' '))
 					return (0);
-				if((j >= ft_strlen(g_map[i + 1]) || j >= ft_strlen(g_map[i - 1]))
-				&& (!ft_strcmp(g_map[i + 1], "\0") && !ft_strcmp(g_map[i - 1], "\0")))
+				if((j >= ft_strlen(g_map[i + 1]) || j >= ft_strlen(g_map[i - 1])))
 					return (0);
 			}
 			j++;
@@ -84,24 +83,6 @@ int	check_map_errors()
 	}
 	return (1);
 }
-
-/*int	other_stuff()
-{
-	int		i;
-	size_t	j;
-
-	i = 0;
-	while (i < count)
-	{
-		j = 0;
-		while (j < ft_strlen(g_map[i]))
-		{
-			if(g_map[i])
-		}
-
-	}
-	return (1);
-}*/
 
 int	map_surronding()
 {
@@ -114,12 +95,12 @@ int	map_surronding()
 	while(i < count)
 	{
 		j = ft_strlen(g_map[i]);
-		if(g_map[i][0] == '1' && g_map[i][j - 1] == '1')
+		if((g_map[i][0] == '1' && g_map[i][j - 1] == '1') || (g_map[i][0] == ' ' || g_map[i][j - 1] == ' '))
 		{
 			k = 0;
 			while(k < (int)j && (i == 0 || i == count - 1))
 			{
-				if(g_map[i][k] != '1')
+				if(g_map[i][k] != '1' || g_map[i][k] == ' ')
 					return (0);
 				k++;
 			}
