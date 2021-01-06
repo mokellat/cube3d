@@ -14,8 +14,9 @@ SRC = drawings.c\
 		map_parsing.c\
 		utils.c\
 		main.c\
-		get_next_line/get_next_line.c\
 		get_next_line/colors.c\
+		get_next_line/get_next_line.c\
+
 all : $(NAME)
 
 $(NAME): $(SRC) cub3d.h
