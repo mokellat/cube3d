@@ -1,4 +1,4 @@
-#include "../cub3d.h"
+#include "./cub3d.h"
 
 void    colors_tre_floor(char **g_lines, int k, int i)
 {

@@ -13,8 +13,9 @@ SRC = drawings.c\
 		rgb.c\
 		map_parsing.c\
 		utils.c\
+		parsing.c\
 		main.c\
-		get_next_line/colors.c\
+		colors.c\
 		get_next_line/get_next_line.c\
 
 all : $(NAME)
