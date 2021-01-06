@@ -26,7 +26,10 @@ int	map_parsing()
 				}
 			}
 			else
+			{
 				puts("0");
+				return (0);
+			}
 		}
 		i++;
 	}
@@ -95,12 +98,12 @@ int	map_surronding()
 	while(i < count)
 	{
 		j = ft_strlen(g_map[i]);
-		if((g_map[i][0] == '1' && g_map[i][j - 1] == '1') || (g_map[i][0] == ' ' || g_map[i][j - 1] == ' '))
+		if((g_map[i][0] == '1' || g_map[i][j - 1] == '1') || (g_map[i][0] == ' ' || g_map[i][j - 1] == ' '))
 		{
 			k = 0;
 			while(k < (int)j && (i == 0 || i == count - 1))
 			{
-				if(g_map[i][k] != '1' || g_map[i][k] == ' ')
+				if(g_map[i][k] != '1' && g_map[i][k] != ' ')
 					return (0);
 				k++;
 			}
