@@ -19,8 +19,10 @@ char			**g_map;
 char			*g_line;
 int				count;
 
-int	map_parsing();
-int	check_map_elements();
-int	check_map_errors();
-int	map_surronding();
-int	ft_strcmp(char *s1, const char *s2);
+void    colors_tre_floor(char **g_lines, int k, int i);
+void	colors_tre_ceilling(char **g_lines, int k, int i);
+int		map_parsing();
+int		check_map_elements();
+int		check_map_errors();
+int		map_surronding();
+int		ft_strcmp(char *s1, const char *s2);
