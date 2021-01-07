@@ -21,6 +21,7 @@ int				count;
 
 void    colors_tre_floor(char **g_lines, int k, int i);
 void	colors_tre_ceilling(char **g_lines, int k, int i);
+void    R_exec(int *k, int i, int *indexx, int x);
 int		map_parsing();
 int		check_map_elements();
 int		check_map_errors();

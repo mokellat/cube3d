@@ -70,14 +70,14 @@ void	Map()
 
 void	project_3D_Draw()
 {
-	int index;
+	int indexx;
 
-	index = 0;
+	indexx = 0;
 	g_new_player.ray_angle = g_new_player.rotation_angle - g_new_player.FOV_angle / 2;
 	TIME(
-	while (index < g_new_player.Num_rays)
+	while (indexx < g_new_player.Num_rays)
 	{
-		total_intersection_3D(index++);
+		total_intersection_3D(indexx++);
 		g_new_player.ray_angle += g_new_player.FOV_angle / g_new_player.Num_rays;
 	}
 	)

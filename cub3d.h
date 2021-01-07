@@ -128,7 +128,7 @@ void	line(int x1, int y1, double angle, int var, int color);
 void	horz_intersection_calcul();
 void	ver_intersection_calcul();
 void	total_intesection_calcul();
-void	total_intersection_3D(int index);
+void	total_intersection_3D(int indexx);
 void	project_3D_Draw();
 void	player_draw(double y, double x, int color);
 int		drawing_cub_walls();

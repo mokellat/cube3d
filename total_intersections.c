@@ -30,7 +30,7 @@ int textures_directions()
 }
 
 
-void	walls_draw(int y, int index)
+void	walls_draw(int y, int indexx)
 {
 	y = g_walltoppixel;
 	while (y < g_wallbottompixel)
@@ -46,13 +46,13 @@ void	walls_draw(int y, int index)
 			g_colorshading = (g_tex.grey_stone_data[(int)((g_texturewidth * g_textureoffsety) + g_textureoffsetx)]);
 		else if(g_new_player.ray_right && g_new_player.wasHitVertical)
 			g_colorshading = (g_tex.eagle_data[(int)((g_texturewidth * g_textureoffsety) + g_textureoffsetx)]);
-		int tst = (int)((g_width * y++) + index);
+		int tst = (int)((g_width * y++) + indexx);
 		if(tst > 0 && tst < g_height * g_width)
 			g_mlx.img_data[tst] = g_colorshading;
 	}
 }
 
-void	total_intersection_3D(int index)
+void	total_intersection_3D(int indexx)
 {
 	int y;
 
@@ -68,15 +68,15 @@ void	total_intersection_3D(int index)
 	y = 0;
 	while(y < g_walltoppixel)
 	{
-		g_mlx.img_data[g_width * y + index] = create_trgb(220, 100, 0);
+		g_mlx.img_data[g_width * y + indexx] = create_trgb(220, 100, 0);
 		y++;
 	}
 	y = g_walltoppixel;
-	walls_draw(y , index);
+	walls_draw(y , indexx);
 	y = g_wallbottompixel;
 	while (y < g_height)
 	{
-		g_mlx.img_data[g_width * y + index] = create_trgb(225, 30, 0);
+		g_mlx.img_data[g_width * y + indexx] = create_trgb(225, 30, 0);
 		y++;
 	}
 	render_sprite();

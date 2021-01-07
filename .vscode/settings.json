@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "__config": "cpp",
+        "__tuple": "cpp",
+        "chrono": "cpp",
+        "ios": "cpp",
+        "string": "cpp",
+        "vector": "cpp"
+    }
+}

@@ -1,4 +1,4 @@
-R 1000 600
+R   1000     600
 
 NO images/eagle.xpm
 SO images/grey_stone.xpm
@@ -10,7 +10,9 @@ S images/barrel.xpm
 F 220,100,0
 C 225,30,0
 
-1111111111
+
+
+11111111110
 100201001
 1000110011
 11000N11001

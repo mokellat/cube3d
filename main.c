@@ -18,5 +18,4 @@ int		main()
 	mlx_loop_hook(g_mlx.mlx_ptr, update, (void *)0);
 	mlx_put_image_to_window(g_mlx.mlx_ptr, g_mlx.win_ptr, g_mlx.img_ptr, 0, 0);
 	mlx_loop(g_mlx.mlx_ptr);
-
 }
