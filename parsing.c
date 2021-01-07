@@ -30,55 +30,15 @@ void parsing(void)
 		if(g_lines[i][0] == 'R')
 			R_exec(&k, i, &indexx, x);
 		else if(g_lines[i][0] == 'N' && g_lines[i][1] == 'O')
-		{
-			k = 2;
-			indexx++;
-			while(g_lines[i][k++] != '\0')
-			{
-				g_files_tex.no_tex = &g_lines[i][k];
-				break;
-			}
-		}
+			g_files_tex.no_tex = textures_work(&k, &indexx, i);
 		else if(g_lines[i][0] == 'S' && g_lines[i][1] == 'O')
-		{
-			k = 2;
-			indexx++;
-			while(g_lines[i][k++] != '\0')
-			{
-				g_files_tex.so_tex = &g_lines[i][k];
-				break;
-			}
-		}
+			g_files_tex.so_tex = textures_work(&k, &indexx, i);
 		else if(g_lines[i][0] == 'W' && g_lines[i][1] == 'E')
-		{
-			k = 2;
-			indexx++;
-			while(g_lines[i][k++] != '\0')
-			{
-				g_files_tex.we_tex = &g_lines[i][k];
-				break;
-			}
-		}
+			g_files_tex.we_tex = textures_work(&k, &indexx, i);
 		else if(g_lines[i][0] == 'E' && g_lines[i][1] == 'A')
-		{
-			k = 2;
-			indexx++;
-			while(g_lines[i][k++] != '\0')
-			{
-				g_files_tex.ea_tex = &g_lines[i][k];
-				break;
-			}
-		}
+			g_files_tex.ea_tex = textures_work(&k, &indexx, i);
 		else if(g_lines[i][0] == 'S')
-		{
-			k = 1;
-			indexx++;
-			while(g_lines[i][k++] != '\0')
-			{
-				g_files_tex.sp_tex = &g_lines[i][k];
-				break;
-			}
-		}
+			g_files_tex.sp_tex = textures_work(&k, &indexx, i);
 		else if(g_lines[i][0] == 'F')
 		{
 			colors_tre_floor(g_lines, k, i);
@@ -100,4 +60,15 @@ void parsing(void)
 	}
 	printf("%d\n", g_file.height);
 	printf("%d\n", g_file.width);
+	printf("%s\n", g_files_tex.no_tex);
+	printf("%s\n", g_files_tex.so_tex);
+	printf("%s\n", g_files_tex.we_tex);
+	printf("%s\n", g_files_tex.ea_tex);
+	printf("%s\n", g_files_tex.sp_tex);
+	printf("%d\n", g_file.color_r_f);
+	printf("%d\n", g_file.color_g_f);
+	printf("%d\n", g_file.color_b_f);
+	printf("%d\n", g_file.color_r_c);
+	printf("%d\n", g_file.color_g_c);
+	printf("%d\n", g_file.color_b_c);
 }

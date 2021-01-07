@@ -19,9 +19,10 @@ char			**g_map;
 char			*g_line;
 int				count;
 
-void    colors_tre_floor(char **g_lines, int k, int i);
-void	colors_tre_ceilling(char **g_lines, int k, int i);
-void    R_exec(int *k, int i, int *indexx, int x);
+int		colors_tre_floor(char **g_lines, int k, int i);
+int		colors_tre_ceilling(char **g_lines, int k, int i);
+void	R_exec(int *k, int i, int *indexx, int x);
+char	*textures_work(int *k, int *indexx, int i);
 int		map_parsing();
 int		check_map_elements();
 int		check_map_errors();

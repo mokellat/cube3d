@@ -1,20 +1,20 @@
-R   1000     600
+R   1000     6000
 
-NO images/eagle.xpm
-SO images/grey_stone.xpm
+NO             images/eagle.xpm
+SO        images/grey_stone.xpm
 WE images/img1.xpm
-EA images/redbrick.xpm
+EA          images/redbrick.xpm
 
-S images/barrel.xpm
+S        images/barrel.xpm
 
-F 220,100,0
-C 225,30,0
+F    250,,100,300
+C          255,200,10
 
 
 
-11111111110
-100201001
+1111111111      11
+100201001111111111111
 1000110011
 11000N11001
-10000110111111
+100001101111111111                        1
 1111111111111

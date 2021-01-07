@@ -1,6 +1,6 @@
 #include "./cub3d.h"
 
-void    colors_tre_floor(char **g_lines, int k, int i)
+int		colors_tre_floor(char **g_lines, int k, int i)
 {
 	k = 2;
 	while(g_lines[i][k] != ',')
@@ -22,9 +22,13 @@ void    colors_tre_floor(char **g_lines, int k, int i)
 		g_file.color_b_f = ft_atoi(&g_lines[i][k]);
 		break;
 	}
+	if(g_file.color_r_f > 0 && g_file.color_r_f < 255 && g_file.color_b_f > 0 && g_file.color_b_f < 255
+	&& g_file.color_b_f > 0 && g_file.color_b_f < 255)
+		return (0);
+	return (1);
 }
 
-void	colors_tre_ceilling(char **g_lines, int k, int i)
+int		colors_tre_ceilling(char **g_lines, int k, int i)
 {
 	k = 2;
 	while(g_lines[i][k] != ',')
@@ -46,4 +50,8 @@ void	colors_tre_ceilling(char **g_lines, int k, int i)
 		g_file.color_b_c = ft_atoi(&g_lines[i][k]);
 		break;
 	}
+	if(g_file.color_r_c > 0 && g_file.color_r_c < 255 && g_file.color_b_c > 0 && g_file.color_b_c < 255
+	&& g_file.color_b_c > 0 && g_file.color_b_c < 255)
+		return (0);
+	return (1);
 }

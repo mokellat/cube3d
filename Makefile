@@ -1,4 +1,3 @@
-
 CC = gcc -Wall -Wextra -Werror -I /usr/share/man/man3 -L  /usr/local/lib -lmlx -framework OpenGL -framework AppKit -o cub3D
 SFLAGS = -g -g3 -fsanitize=address
 NAME = cub3D

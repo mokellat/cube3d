@@ -68,7 +68,7 @@ void	total_intersection_3D(int indexx)
 	y = 0;
 	while(y < g_walltoppixel)
 	{
-		g_mlx.img_data[g_width * y + indexx] = create_trgb(220, 100, 0);
+		g_mlx.img_data[g_width * y + indexx] = create_trgb(g_file.color_r_f, g_file.color_g_f, g_file.color_b_f);
 		y++;
 	}
 	y = g_walltoppixel;
@@ -76,7 +76,7 @@ void	total_intersection_3D(int indexx)
 	y = g_wallbottompixel;
 	while (y < g_height)
 	{
-		g_mlx.img_data[g_width * y + indexx] = create_trgb(225, 30, 0);
+		g_mlx.img_data[g_width * y + indexx] =  create_trgb(g_file.color_r_c, g_file.color_g_c, g_file.color_b_c);
 		y++;
 	}
 	render_sprite();
