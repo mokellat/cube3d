@@ -14,6 +14,8 @@ SRC = drawings.c\
 		utils.c\
 		parsing.c\
 		parsing_utils.c\
+		error.c\
+		file_errors.c\
 		main.c\
 		colors.c\
 		get_next_line/get_next_line.c\

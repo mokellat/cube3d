@@ -9,3 +9,18 @@ int	ft_strcmp(char *s1, const char *s2)
 		x++;
 	return (s1[x] - s2[x]);
 }
+
+void	ft_putstr(char *s)
+{
+	int i;
+
+	i = 0;
+	if (s)
+	{
+		while (s[i])
+		{
+			write(1, &s[i], 1);
+			i++;
+		}
+	}
+}
