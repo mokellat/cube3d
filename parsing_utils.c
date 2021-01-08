@@ -10,8 +10,6 @@ void	progrmm_init()
 	g_file.color_r_c = -1;
 	g_file.color_g_c = -1;
 	g_file.color_b_c = -1;
-	printf("%d\n", g_file.height);
-	printf("%d\n", g_file.width);
 }
 
 int		r_exec(int *k, int i, int *x)
@@ -25,7 +23,7 @@ int		r_exec(int *k, int i, int *x)
 		if(*x == 32)
 			(*k)++;
 		else
-			error(EXIT_FAILURE, "dimensions are invalid");
+			error(EXIT_FAILURE, "dimensions are invalid !");
 		*x = (int) g_lines[i][*k];
 	}
 	variable = ft_atoi(&g_lines[i][*k]);

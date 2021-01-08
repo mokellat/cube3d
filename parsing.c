@@ -15,6 +15,7 @@ void parsing(void)
 	count = 0;
 	x = 0;
 	k = 0;
+	counter = 0;
 	fd = open("./file.cub", O_RDONLY);
 	progrmm_init();
 	while((i = get_next_line(fd, &g_line)))
@@ -29,9 +30,7 @@ void parsing(void)
 		if(g_lines[i][0] == '\0')
 			indexx++;
 		if(g_lines[i][0] == 'R')
-		{
 			R_exec(&k, i, &indexx, x);
-		}
 		else if(g_lines[i][0] == 'N' && g_lines[i][1] == 'O')
 			g_files_tex.no_tex = textures_work(&k, &indexx, i);
 		else if(g_lines[i][0] == 'S' && g_lines[i][1] == 'O')
@@ -61,17 +60,4 @@ void parsing(void)
 		}
 		i++;
 	}
-	printf("%d\n", g_file.height);
-	printf("%d\n", g_file.width);
-	printf("%s\n", g_files_tex.no_tex);
-	printf("%s\n", g_files_tex.so_tex);
-	printf("%s\n", g_files_tex.we_tex);
-	printf("%s\n", g_files_tex.ea_tex);
-	printf("%s\n", g_files_tex.sp_tex);
-	printf("%d\n", g_file.color_r_f);
-	printf("%d\n", g_file.color_g_f);
-	printf("%d\n", g_file.color_b_f);
-	printf("%d\n", g_file.color_r_c);
-	printf("%d\n", g_file.color_g_c);
-	printf("%d\n", g_file.color_b_c);
 }

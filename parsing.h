@@ -17,6 +17,7 @@ char			**g_lines;
 char			**g_map;
 char			*g_line;
 int				count;
+int				counter;
 
 void	colors_tre_floor(char **g_lines, int k, int i);
 void	colors_tre_ceilling(char **g_lines, int k, int i);

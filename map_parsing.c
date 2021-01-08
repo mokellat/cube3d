@@ -15,21 +15,12 @@ int	map_parsing()
 			if(check_map_elements())
 			{
 				if(map_surronding() && check_map_errors())
-				{
-					puts("correct : 1");
 					return (1);
-				}
 				else
-				{
-					puts("false : 0");
 					return (0);
-				}
 			}
 			else
-			{
-				puts("0");
 				return (0);
-			}
 		}
 		i++;
 	}
