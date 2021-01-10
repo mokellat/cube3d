@@ -24,7 +24,7 @@ int	map_parsing()
 		}
 		i++;
 	}
-	return (0);
+	return (1);
 }
 
 int	check_map_elements()

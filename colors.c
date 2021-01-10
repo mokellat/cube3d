@@ -12,14 +12,16 @@ void		colors_tre_floor(char **g_lines, int k, int i)
 		k++;
 	while(g_lines[i][++k] != ',')
 	{
-		g_file.color_g_f = ft_atoi(&g_lines[i][k]);
+		if(ft_atoi(&g_lines[i][k]) || g_lines[i][k] == 48)
+			g_file.color_g_f = ft_atoi(&g_lines[i][k]);
 		break;
 	}
 	while(g_lines[i][k] != ',')
 		k++;
 	while(g_lines[i][++k])
 	{
-		g_file.color_b_f = ft_atoi(&g_lines[i][k]);
+		if(ft_atoi(&g_lines[i][k]) || g_lines[i][k] == 48)
+			g_file.color_b_f = ft_atoi(&g_lines[i][k]);
 		break;
 	}
 }
