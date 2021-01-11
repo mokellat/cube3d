@@ -1,21 +1,20 @@
-  R     100    10
+  R    100    10
 
-NO        images/eagle.xpm
+   NO        images/eagle.xpm
 SO        images/grey_stone.xpm
 WE        images/img1.xpm
-EA        images/redbrick.xpm
+            EA        images/redbrick.xpm
 
-S         images/barrel.xpm
+   S         images/barrel.xpm
 
-F    250,0,255
-C          255,200,10
+   F    250,0,255
+   C          255,200,10
 
-   1
+   0
   1
 111111111
 100000001
 111111111
-1
 11111111
 10000001
 111111111

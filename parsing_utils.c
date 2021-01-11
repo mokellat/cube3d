@@ -48,7 +48,7 @@ char	*textures_work(int *k, int *indexx, int i)
 	char	*variable;
 
 	variable = NULL;
-	*k = 2;
+	*k = *k + 2;
 	while(g_lines[i][*k] == ' ')
 		(*k)++;
 	(*indexx)++;

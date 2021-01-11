@@ -1,5 +1,19 @@
 #include "cub3d.h"
 
+void	beg_errors(int j)
+{
+	char **ptr;
+	int	i;
+
+	i = 0;
+	while(i < j)
+	{
+		i++;
+		ptr = realloc(g_lines, i * sizeof(g_lines));
+		ptr[i - 1] = ft_strtrim(g_lines[i - 1], " ");
+	}
+}
+
 void parsing(void)
 {
 	int	i;
@@ -33,13 +47,13 @@ void parsing(void)
 				indexx++;
 			if(g_lines[i][k] == 'R')
 				R_exec(&k, i, &indexx, x);
-			else if(g_lines[i][k] == 'N' && g_lines[i][1] == 'O')
+			else if(g_lines[i][k] == 'N' && g_lines[i][k + 1] == 'O')
 				g_files_tex.no_tex = textures_work(&k, &indexx, i);
-			else if(g_lines[i][k] == 'S' && g_lines[i][1] == 'O')
+			else if(g_lines[i][k] == 'S' && g_lines[i][k + 1] == 'O')
 				g_files_tex.so_tex = textures_work(&k, &indexx, i);
-			else if(g_lines[i][k] == 'W' && g_lines[i][1] == 'E')
+			else if(g_lines[i][k] == 'W' && g_lines[i][k + 1] == 'E')
 				g_files_tex.we_tex = textures_work(&k, &indexx, i);
-			else if(g_lines[i][k] == 'E' && g_lines[i][1] == 'A')
+			else if(g_lines[i][k] == 'E' && g_lines[i][k + 1] == 'A')
 				g_files_tex.ea_tex = textures_work(&k, &indexx, i);
 			else if(g_lines[i][k] == 'S')
 				g_files_tex.sp_tex = textures_work(&k, &indexx, i);
@@ -67,20 +81,22 @@ void parsing(void)
 		i++;
 		k = -1;
 	}
-	i = -1;
-	while(++i < count)
-		printf("%s\n", g_map[i]);
-	printf("%s\n",g_files_tex.no_tex);
-	printf("%s\n",g_files_tex.so_tex);
-	printf("%s\n",g_files_tex.we_tex);
-	printf("%s\n",g_files_tex.ea_tex);
-	printf("%s\n",g_files_tex.sp_tex);
-	printf("%d\n", g_file.height);
-	printf("%d\n", g_file.width);
-	printf("%d\n", g_file.color_r_f);
-	printf("%d\n", g_file.color_g_f);
-	printf("%d\n", g_file.color_b_f);
-	printf("%d\n", g_file.color_r_c);
-	printf("%d\n", g_file.color_g_c);
-	printf("%d\n", g_file.color_b_c);
+	beg_errors(j);
+	// i = -1;
+	// while(++i < count)
+	// 	printf("%s\n", g_map[i]);
+	// printf("%s\n",g_files_tex.no_tex);
+	// printf("%s\n",g_files_tex.so_tex);
+	// printf("%s\n",g_files_tex.we_tex);
+	// printf("%s\n",g_files_tex.ea_tex);
+	// printf("%s\n",g_files_tex.sp_tex);
+	// printf("%d\n", g_file.height);
+	// printf("%d\n", g_file.width);
+	// printf("%d\n", g_file.color_r_f);
+	// printf("%d\n", g_file.color_g_f);
+	// printf("%d\n", g_file.color_b_f);
+	// printf("%d\n", g_file.color_r_c);
+	// printf("%d\n", g_file.color_g_c);
+	// printf("%d\n", g_file.color_b_c);
 }
+

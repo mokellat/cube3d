@@ -28,6 +28,7 @@ void	ft_putstr(char *s);
 void	file_errors();
 void	progrmm_init();
 int		map_parsing();
+void	file_errors_beg(int j, int indexx);
 int		check_map_elements();
 int		check_map_errors();
 int		map_surronding();

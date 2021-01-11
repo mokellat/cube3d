@@ -2,7 +2,7 @@
 
 void		colors_tre_floor(char **g_lines, int k, int i)
 {
-	k = 2;
+	k = k + 1;
 	while(g_lines[i][k] != ',')
 	{
 		g_file.color_r_f = ft_atoi(&g_lines[i][k]);
@@ -28,7 +28,7 @@ void		colors_tre_floor(char **g_lines, int k, int i)
 
 void		colors_tre_ceilling(char **g_lines, int k, int i)
 {
-	k = 2;
+	k = k + 1;
 	while(g_lines[i][k] != ',')
 	{
 		g_file.color_r_c = ft_atoi(&g_lines[i][k]);
