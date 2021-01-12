@@ -17,6 +17,7 @@ int		r_exec(int *k, int i, int *x)
 	int		variable;
 
 	(*k)++;
+	variable = -1;
 	*x = (int) g_lines[i][*k];
 	while(*x < 48 || *x > 59)
 	{
@@ -32,6 +33,15 @@ int		r_exec(int *k, int i, int *x)
 
 void	R_exec(int *k, int i, int *indexx, int x)
 {
+	int	j;
+
+	j = *k + 1;
+	while(g_lines[i][j])
+	{
+		if(!ft_isdigit(g_lines[i][j]) && g_lines[i][j] != ' ')
+			error(EXIT_FAILURE, "dimensions are invalid !");
+		j++;
+	}
 	g_file.height = r_exec(k, i, &x);
 	(*indexx)++;
 	counter++;
@@ -40,7 +50,7 @@ void	R_exec(int *k, int i, int *indexx, int x)
 		(*k)++;
 		x = (int) g_lines[i][*k];
 	}
-	g_file.width = r_exec(k++, i, &x);
+	g_file.width = r_exec(k--, i, &x);
 }
 
 char	*textures_work(int *k, int *indexx, int i)

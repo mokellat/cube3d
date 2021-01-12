@@ -1,16 +1,20 @@
 #include "cub3d.h"
 
-void	beg_errors(int j)
+void	beg_errors(int indexx)
 {
-	char **ptr;
-	int	i;
+	char	**ptr;
+	int		i;
 
 	i = 0;
-	while(i < j)
+	while(i < indexx)
 	{
 		i++;
-		ptr = realloc(g_lines, i * sizeof(g_lines));
+		ptr = realloc(g_lines, i * sizeof(g_lines[i - 1]));
 		ptr[i - 1] = ft_strtrim(g_lines[i - 1], " ");
+		if(ptr[i - 1][0] != 'R' && ptr[i - 1][0] != 'N' && ptr[i - 1][0] != 'S' && ptr[i - 1][0] != 'W'
+		&& ptr[i  - 1][0] != 'E' && ptr[i - 1][0] != 'S' && ptr[i - 1][0] != 'F' && ptr[i - 1][0] != 'C'
+		&& ptr[i - 1][0] != '\0')
+			error(EXIT_FAILURE, "File is invalid !");
 	}
 }
 
@@ -69,22 +73,21 @@ void parsing(void)
 				indexx++;
 				counter++;
 			}
-			else if((g_lines[i][k] == '1' || g_lines[i][k] == '0' || g_lines[i][k] == ' '
-			|| g_lines[i][k] == '\0') && i > indexx)
+			else if(i >= indexx && counter >= 8)
 			{
 				count++;
 				g_map = realloc(g_map, count * sizeof(g_lines[i]));
 				g_map[count - 1] = g_lines[i];
-				break;
+				break ;
 			}
 		}
 		i++;
 		k = -1;
 	}
-	beg_errors(j);
-	// i = -1;
-	// while(++i < count)
-	// 	printf("%s\n", g_map[i]);
+	beg_errors(indexx);
+	i = -1;
+	while(++i < count)
+		printf("%s\n", g_map[i]);
 	// printf("%s\n",g_files_tex.no_tex);
 	// printf("%s\n",g_files_tex.so_tex);
 	// printf("%s\n",g_files_tex.we_tex);
@@ -98,5 +101,7 @@ void parsing(void)
 	// printf("%d\n", g_file.color_r_c);
 	// printf("%d\n", g_file.color_g_c);
 	// printf("%d\n", g_file.color_b_c);
+	// g_lines[i][k] == '1' || g_lines[i][k] == '0' || g_lines[i][k] == ' '
+	// 		|| g_lines[i][k] == '\0')
 }
 
