@@ -6,7 +6,7 @@ void	beg_errors(int indexx)
 	int		i;
 
 	i = 0;
-	while(i < indexx)
+	while(i < indexx - 1)
 	{
 		i++;
 		ptr = realloc(g_lines, i * sizeof(g_lines[i - 1]));
@@ -18,7 +18,7 @@ void	beg_errors(int indexx)
 	}
 }
 
-void parsing(void)
+void	parsing(void)
 {
 	int	i;
 	int	k;
@@ -73,7 +73,7 @@ void parsing(void)
 				indexx++;
 				counter++;
 			}
-			else if(i >= indexx && counter >= 8)
+			else if(i >= indexx && counter == 8)
 			{
 				count++;
 				g_map = realloc(g_map, count * sizeof(g_lines[i]));
@@ -104,4 +104,3 @@ void parsing(void)
 	// g_lines[i][k] == '1' || g_lines[i][k] == '0' || g_lines[i][k] == ' '
 	// 		|| g_lines[i][k] == '\0')
 }
-

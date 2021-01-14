@@ -6,12 +6,12 @@ void	add_sprite(void)
 	int j;
 
 	i = 0;
-	while (ptr[i])
+	while (g_map[i])
 	{
 		j = 0;
-		while (ptr[i][j])
+		while (g_map[i][j])
 		{
-			if (ptr[i][j] == '2')
+			if (g_map[i][j] == '2')
 			{
 				g_sprites[g_sprite_index].x = (j + 0.5) * g_tile;
 				g_sprites[g_sprite_index].y = (i + 0.5) * g_tile;

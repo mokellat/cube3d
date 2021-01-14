@@ -4,12 +4,12 @@ int		main()
 {
 	int k;
 
+	parsing();
 	player_config();
 	g_sp_image.image = NULL;
 	g_mlx.mlx_ptr = mlx_init();
-	g_mlx.win_ptr = mlx_new_window(g_mlx.mlx_ptr, g_height, g_width, "cub3d");
-	g_mlx.img_ptr = mlx_new_image(g_mlx.mlx_ptr, g_height, g_width);
-	parsing();
+	g_mlx.win_ptr = mlx_new_window(g_mlx.mlx_ptr, g_file.height, g_file.width, "cub3d");
+	g_mlx.img_ptr = mlx_new_image(g_mlx.mlx_ptr, g_file.height, g_file.width);
 	get_image();
 	map_parsing();
 	file_errors();
