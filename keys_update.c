@@ -65,9 +65,9 @@ int		update()
 		g_new_player.pos_y = g_new_player.new_pos_y;
 	}
 	// Map();
-	// player_draw();
-	// //line(g_new_player.pos_x, g_new_player.pos_y, g_new_player.rotation_angle, 50, 0XFF0000);
-	// castAllRays();
+	// player_draw(g_new_player.pos_y, g_new_player.pos_x, 0XFF0000);
+	// // line(g_new_player.pos_x, g_new_player.pos_y, g_new_player.rotation_angle, 50, 0XFF0000);
+	// // castAllRays();
 	project_3D_Draw();
 	mlx_put_image_to_window(g_mlx.mlx_ptr, g_mlx.win_ptr, g_mlx.img_ptr, 0, 0);
 	return 0;

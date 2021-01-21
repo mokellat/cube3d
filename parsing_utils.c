@@ -44,7 +44,7 @@ void	R_exec(int *k, int i, int *indexx, int x)
 	}
 	g_file.height = r_exec(k, i, &x);
 	(*indexx)++;
-	counter++;
+	g_counter++;
 	while(x >= 48 && x <= 59)
 	{
 		(*k)++;
@@ -62,7 +62,7 @@ char	*textures_work(int *k, int *indexx, int i)
 	while(g_lines[i][*k] == ' ')
 		(*k)++;
 	(*indexx)++;
-	counter++;
+	g_counter++;
 	variable = &g_lines[i][*k];
 	return (variable);
 }

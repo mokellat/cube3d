@@ -11,9 +11,9 @@ void	rays_directions()
 
 void	help_inter_horz()
 {
-	while (g_nexthorztouchy >= 0 && g_nexthorztouchy <= g_height && g_nexthorztouchx >= 0 && g_nexthorztouchx <= g_width)
+	while (g_nexthorztouchy >= 0 && g_nexthorztouchy <= g_tile * g_count && g_nexthorztouchx >= 0 && g_nexthorztouchx <= g_tile * 20)
 	{
-		if (haswallat(g_nexthorztouchx , g_nexthorztouchy ))
+		if (haswallat(g_nexthorztouchx , g_nexthorztouchy - (g_new_player.ray_up ? 1 : 0)))
 		{
 			g_foundawallhorz = 1;
 			g_horzwallhity = g_nexthorztouchy;
@@ -30,9 +30,9 @@ void	help_inter_horz()
 
 void	help_inter_ver()
 {
-	while (g_nextvertouchy >= 0 && g_nextvertouchy <= g_height && g_nextvertouchx >= 0 && g_nextvertouchx <= g_width)
+	while (g_nextvertouchy >= 0 && g_nextvertouchy <= g_tile * g_count && g_nextvertouchx >= 0 && g_nextvertouchx <= g_tile * 20)
 	{
-		if (haswallat(g_nextvertouchx, g_nextvertouchy ))
+		if (haswallat(g_nextvertouchx, g_nextvertouchy - (g_new_player.ray_left ? 1 : 0)))
 		{
 			g_foundawallver = 1;
 			g_verwallhity = g_nextvertouchy;

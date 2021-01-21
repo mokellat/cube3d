@@ -16,13 +16,15 @@ t_parse			g_file;
 char			**g_lines;
 char			**g_map;
 char			*g_line;
-int				count;
-int				counter;
+int				g_count;
+int				g_counter;
+int				g_b_lenght;
 
 void	colors_tre_floor(char **g_lines, int k, int i);
 void	colors_tre_ceilling(char **g_lines, int k, int i);
 void	R_exec(int *k, int i, int *indexx, int x);
 char	*textures_work(int *k, int *indexx, int i);
+void	player_init();
 void	error(int etat, char *string);
 void	ft_putstr(char *s);
 void	file_errors();

@@ -2,6 +2,8 @@
 
 void	file_errors()
 {
+	if(g_map == NULL)
+		error(EXIT_FAILURE, "There is no map !");
 	if(g_file.color_r_f ==  -1 || g_file.color_g_f == -1 || g_file.color_b_f == -1)
 		error(EXIT_FAILURE, "colors are invalid !");
 	if(g_file.color_r_c ==  -1 || g_file.color_g_c == -1 || g_file.color_b_c == -1)
@@ -13,6 +15,6 @@ void	file_errors()
 		error(EXIT_FAILURE, "textures are invalid !");
 	if(!map_parsing())
 		error(EXIT_FAILURE, "map is invalid");
-	if(counter > 8)
+	if(g_counter > 8)
 		error(EXIT_FAILURE, "duplicate Element in the file !");
 }

@@ -4,8 +4,9 @@ void	line(int x1, int y1, double angle, int var, int color)
 {
 	int i;
 	int j;
+    int rayon;
 
-	g_rayon = var;
+	rayon = var;
 	while (g_rayon--)
 	{
 		j = (cos(angle) * g_rayon + x1) * g_mini_map_factoor;
@@ -24,14 +25,14 @@ int		drawing_cub_walls()
     int x,y;
     x = g_tile + tilex;
     y = g_tile + tiley;
-    while (tiley < y - 1)
+    while (tiley < y)
     {
         while (tilex < x)
         {
             g_mlx.img_data[tiley * g_width + tilex] = tilecolor;
             tilex++;
         }
-        tilex -= g_tile - 1;
+        tilex -= g_tile;
         tiley++;
     }
     return (0);
@@ -39,27 +40,32 @@ int		drawing_cub_walls()
 
 void	Map()
 {
-    int i, j;
+    int i;
+    int j;
+
     tilex = 0;
     tiley = 0;
-    //tilecolor = 0xFFFFFF;
-
     i = 0;
-    while (i < 8)
+    while (i < g_count)
     {
         j = 0;
-        while (j < 8)
+        while (j < (int)ft_strlen(g_map[i]))
         {
             tilex = j * g_tile;
             tiley = i * g_tile;
-            if (ptr[i][j] == '1')
+            if(g_map[i][j] == '1')
+            {
+                tilecolor = 0xFFFFFF;
+                drawing_cub_walls();
+            }
+            else if(g_map[i][j] == '0')
             {
                 tilecolor = 0x000000;
                 drawing_cub_walls();
             }
-            else if (ptr[i][j] == '0')
+            else if(g_map[i][j] == 'N')
             {
-                tilecolor = 0xFFFFFF;
+                tilecolor = 0x0000FF;
                 drawing_cub_walls();
             }
             j++;
@@ -74,11 +80,9 @@ void	project_3D_Draw()
 
 	indexx = 0;
 	g_new_player.ray_angle = g_new_player.rotation_angle - g_new_player.FOV_angle / 2;
-	TIME(
 	while (indexx < g_new_player.Num_rays)
 	{
 		total_intersection_3D(indexx++);
 		g_new_player.ray_angle += g_new_player.FOV_angle / g_new_player.Num_rays;
 	}
-	)
 }

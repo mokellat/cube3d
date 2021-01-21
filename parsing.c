@@ -9,7 +9,7 @@ void	beg_errors(int indexx)
 	while(i < indexx - 1)
 	{
 		i++;
-		ptr = realloc(g_lines, i * sizeof(g_lines[i - 1]));
+		ptr = realloc(ptr, i * sizeof(g_lines[i - 1]));
 		ptr[i - 1] = ft_strtrim(g_lines[i - 1], " ");
 		if(ptr[i - 1][0] != 'R' && ptr[i - 1][0] != 'N' && ptr[i - 1][0] != 'S' && ptr[i - 1][0] != 'W'
 		&& ptr[i  - 1][0] != 'E' && ptr[i - 1][0] != 'S' && ptr[i - 1][0] != 'F' && ptr[i - 1][0] != 'C'
@@ -30,10 +30,10 @@ void	parsing(void)
 	i = 1;
 	j = 0;
 	indexx = 0;
-	count = 0;
+	g_count = 0;
 	x = 0;
 	k = -1;
-	counter = 0;
+	g_counter = 0;
 	fd = open("./file.cub", O_RDONLY);
 	progrmm_init();
 	while((i = get_next_line(fd, &g_line)))
@@ -65,19 +65,23 @@ void	parsing(void)
 			{
 				colors_tre_floor(g_lines, k, i);
 				indexx++;
-				counter++;
+				g_counter++;
 			}
 			else if(g_lines[i][k] == 'C')
 			{
 				colors_tre_ceilling(g_lines, k, i);
 				indexx++;
-				counter++;
+				g_counter++;
 			}
-			else if(i >= indexx && counter == 8)
+			else if(i >= indexx && g_counter == 8)
 			{
-				count++;
-				g_map = realloc(g_map, count * sizeof(g_lines[i]));
-				g_map[count - 1] = g_lines[i];
+				g_count++;
+				g_map = realloc(g_map, g_count * sizeof(g_lines[i]));
+				g_map[g_count - 1] = g_lines[i];
+				// if(ft_strlen(g_lines[i]) < ft_strlen(g_lines[i + 1]))
+				// 	g_b_lenght = (int)ft_strlen(g_lines[i + 1]);
+				// else
+				// 	g_b_lenght = (int)ft_strlen(g_lines[i]);
 				break ;
 			}
 		}
@@ -86,7 +90,7 @@ void	parsing(void)
 	}
 	beg_errors(indexx);
 	i = -1;
-	while(++i < count)
+	while(++i < g_count)
 		printf("%s\n", g_map[i]);
 	// printf("%s\n",g_files_tex.no_tex);
 	// printf("%s\n",g_files_tex.so_tex);

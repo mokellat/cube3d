@@ -7,7 +7,8 @@ int	map_parsing()
 
 	i = 0;
 	j = -1;
-	while(i < count)
+	player_init();
+	while(i < g_count)
 	{
 		 j = -1;
 		while(++j < ft_strlen(g_map[i]))
@@ -34,7 +35,7 @@ int	check_map_elements()
 
 	i = 0;
 	j = 0;
-	while (i < count)
+	while (i < g_count)
 	{
 		j = 0;
 		while(j < ft_strlen(g_map[i]))
@@ -57,13 +58,13 @@ int	check_map_errors()
 
 	i = 0;
 	j = 0;
-	while (i < count)
+	while (i < g_count)
 	{
 		j = 0;
 		while(j < ft_strlen(g_map[i]))
 		{
 			if((g_map[i][j] == '0' || g_map[i][j] == '2') && j > 0 && i > 0 && j + 1 < ft_strlen(g_map[i])
-			&& i + 1 < count)
+			&& i + 1 < g_count)
 			{
 				if((g_map[i][j + 1] == ' ' || g_map[i][j - 1] == ' ' || g_map[i + 1][j] == ' '
 				|| g_map[i - 1][j] == ' '))
@@ -86,13 +87,13 @@ int	map_surronding()
 
 	i = 0;
 	k = 0;
-	while(i < count)
+	while(i < g_count)
 	{
 		j = ft_strlen(g_map[i]);
 		if((g_map[i][0] == '1' || g_map[i][j - 1] == '1') || (g_map[i][0] == ' ' && g_map[i][j - 1] == ' '))
 		{
 			k = 0;
-			while(k < (int)j && (i == 0 || i == count - 1))
+			while(k < (int)j && (i == 0 || i == g_count - 1))
 			{
 				if(g_map[i][k] != '1' && g_map[i][k] != ' ')
 					return (0);
@@ -104,4 +105,34 @@ int	map_surronding()
 			return (0);
 	}
 	return (1);
+}
+
+void	player_init()
+{
+	int	i;
+	int	j;
+	int indexx;
+
+	i = 0;
+	indexx = 0;
+	while(i < g_count)
+	{
+		j = 0;
+		while(j < (int) ft_strlen(g_map[i]))
+		{
+			if(g_map[i][j] == 'N' || g_map[i][j] == 'W' || g_map[i][j] == 'S'
+            || g_map[i][j] == 'E')
+            {
+                g_new_player.pos_x = j * g_tile + g_tile / 2;
+                g_new_player.pos_y = i * g_tile + g_tile / 2;
+				indexx++;
+            }
+			j++;
+		}
+		i++;
+	}
+	if(indexx == 0)
+		error(EXIT_FAILURE, "There is no player !");
+	if(indexx > 1)
+		error(EXIT_FAILURE, "There is more then one player !");
 }
