@@ -7,7 +7,7 @@ void	line(int x1, int y1, double angle, int var, int color)
     int rayon;
 
 	rayon = var;
-	while (g_rayon--)
+	while (rayon--)
 	{
 		j = (cos(angle) * g_rayon + x1) * g_mini_map_factoor;
 		i = (sin(angle) * g_rayon + y1) * g_mini_map_factoor;
