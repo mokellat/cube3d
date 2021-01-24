@@ -15,6 +15,8 @@ void	file_errors()
 		error(EXIT_FAILURE, "textures are invalid !");
 	if(!map_parsing())
 		error(EXIT_FAILURE, "map is invalid");
+	if(g_map == NULL)
+		error(EXIT_FAILURE, "there is no map !");
 	if(g_counter > 8)
 		error(EXIT_FAILURE, "duplicate Element in the file !");
 }

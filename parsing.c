@@ -93,16 +93,14 @@ void	parsing(void)
 				g_count++;
 				g_map = realloc(g_map, g_count * sizeof(g_lines[i]));
 				g_map[g_count - 1] = g_lines[i];
-				// if(ft_strlen(g_lines[i]) < ft_strlen(g_lines[i + 1]))
-				// 	g_b_lenght = (int)ft_strlen(g_lines[i + 1]);
-				// else
-				// 	g_b_lenght = (int)ft_strlen(g_lines[i]);
 				break ;
 			}
 		}
 		i++;
 		k = -1;
 	}
+	if(g_map == NULL)
+		error(EXIT_FAILURE, "there is no map !");
 	beg_errors(indexx);
 	lenght_calcul();
 	i = -1;

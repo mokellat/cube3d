@@ -22,7 +22,9 @@ void	player_draw(double y, double x, int color)
 
 int		drawing_cub_walls()
 {
-    int x,y;
+    int x;
+    int y;
+
     x = g_tile + tilex;
     y = g_tile + tiley;
     while (tiley < y)
@@ -58,14 +60,9 @@ void	Map()
                 tilecolor = 0xFFFFFF;
                 drawing_cub_walls();
             }
-            else if(g_map[i][j] == '0')
+            else
             {
                 tilecolor = 0x000000;
-                drawing_cub_walls();
-            }
-            else if(g_map[i][j] == 'N')
-            {
-                tilecolor = 0x0000FF;
                 drawing_cub_walls();
             }
             j++;

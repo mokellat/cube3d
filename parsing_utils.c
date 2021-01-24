@@ -42,7 +42,7 @@ void	R_exec(int *k, int i, int *indexx, int x)
 			error(EXIT_FAILURE, "dimensions are invalid !");
 		j++;
 	}
-	g_file.height = r_exec(k, i, &x);
+	g_file.width = r_exec(k, i, &x);
 	(*indexx)++;
 	g_counter++;
 	while(x >= 48 && x <= 59)
@@ -50,7 +50,7 @@ void	R_exec(int *k, int i, int *indexx, int x)
 		(*k)++;
 		x = (int) g_lines[i][*k];
 	}
-	g_file.width = r_exec(k--, i, &x);
+	g_file.height = r_exec(k--, i, &x);
 }
 
 char	*textures_work(int *k, int *indexx, int i)

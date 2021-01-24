@@ -8,8 +8,8 @@ int		main()
 	player_config();
 	g_sp_image.image = NULL;
 	g_mlx.mlx_ptr = mlx_init();
-	g_mlx.win_ptr = mlx_new_window(g_mlx.mlx_ptr, g_file.height, g_file.width, "cub3d");
-	g_mlx.img_ptr = mlx_new_image(g_mlx.mlx_ptr, g_file.height, g_file.width);
+	g_mlx.win_ptr = mlx_new_window(g_mlx.mlx_ptr, g_width, g_height, "cub3d");
+	g_mlx.img_ptr = mlx_new_image(g_mlx.mlx_ptr, g_width, g_height);
 	get_image();
 	file_errors();
 	map_parsing();
