@@ -88,7 +88,7 @@ void	parsing(void)
 				indexx++;
 				g_counter++;
 			}
-			else if(i >= indexx && g_counter == 8)
+			if(i >= indexx && (g_lines[i][k] == '1' || g_lines[i][k] == '\0'))
 			{
 				g_count++;
 				g_map = realloc(g_map, g_count * sizeof(g_lines[i]));

@@ -1,6 +1,6 @@
 #include "cub3d.h"
 
-int	map_parsing()
+int		map_parsing()
 {
 	int		i;
 	size_t	j;
@@ -28,7 +28,7 @@ int	map_parsing()
 	return (1);
 }
 
-int	check_map_elements()
+int		check_map_elements()
 {
 	int		i;
 	size_t	j;
@@ -51,7 +51,7 @@ int	check_map_elements()
 	return (1);
 }
 
-int	check_map_errors()
+int		check_map_errors()
 {
 	int		i;
 	size_t	j;
@@ -63,8 +63,8 @@ int	check_map_errors()
 		j = 0;
 		while(j < ft_strlen(g_map[i]))
 		{
-			if((g_map[i][j] == '0' || g_map[i][j] == '2') && j > 0 && i > 0 && j + 1 < ft_strlen(g_map[i])
-			&& i + 1 < g_count)
+			if((g_map[i][j] == '0' || g_map[i][j] == 'N'  || g_map[i][j] == 'W' || g_map[i][j] == 'E'
+			|| g_map[i][j] == 'S') && j > 0 && i > 0 && j + 1 < ft_strlen(g_map[i]) && i + 1 < g_count)
 			{
 				if((g_map[i][j + 1] == ' ' || g_map[i][j - 1] == ' ' || g_map[i + 1][j] == ' '
 				|| g_map[i - 1][j] == ' '))
@@ -79,7 +79,7 @@ int	check_map_errors()
 	return (1);
 }
 
-int	map_surronding()
+int		map_surronding()
 {
 	int		i;
 	size_t	j;
@@ -121,12 +121,13 @@ void	player_init()
 		while(j < (int) ft_strlen(g_map[i]))
 		{
 			if(g_map[i][j] == 'N' || g_map[i][j] == 'W' || g_map[i][j] == 'S'
-            || g_map[i][j] == 'E')
-            {
-                g_new_player.pos_x = j * g_tile + g_tile / 2;
-                g_new_player.pos_y = i * g_tile + g_tile / 2;
+			|| g_map[i][j] == 'E')
+			{
+				g_new_player.pos_x = j * g_tile + g_tile / 2;
+				g_new_player.pos_y = i * g_tile + g_tile / 2;
+				g_map[i][j] = '0';
 				indexx++;
-            }
+			}
 			j++;
 		}
 		i++;

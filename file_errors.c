@@ -13,8 +13,6 @@ void	file_errors()
 	if(g_files_tex.no_tex == NULL || g_files_tex.so_tex == NULL || g_files_tex.we_tex == NULL
 	|| g_files_tex.ea_tex == NULL || g_files_tex.sp_tex == NULL)
 		error(EXIT_FAILURE, "textures are invalid !");
-	if(!map_parsing())
-		error(EXIT_FAILURE, "map is invalid");
 	if(g_map == NULL)
 		error(EXIT_FAILURE, "there is no map !");
 	if(g_counter > 8)

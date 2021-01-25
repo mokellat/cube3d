@@ -51,7 +51,7 @@ int		haswallat(double x, double y)
 	mapindex_y = (y / g_tile);
 	if(mapindex_y < g_count)
 	{
-		if(g_map[(int)mapindex_y][(int)mapindex_x] != '0' && g_map[(int)mapindex_y][(int)mapindex_x] != 'N')
+		if(g_map[(int)mapindex_y][(int)mapindex_x] != '0')
 			return(1);
 	}
 	return (0);

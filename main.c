@@ -12,7 +12,8 @@ int		main()
 	g_mlx.img_ptr = mlx_new_image(g_mlx.mlx_ptr, g_width, g_height);
 	get_image();
 	file_errors();
-	map_parsing();
+	if(!map_parsing())
+		error(EXIT_FAILURE, "map is invalid");
 	g_mlx.img_data = (int *)mlx_get_data_addr(g_mlx.img_ptr, &k, &k, &k);
 	mlx_hook(g_mlx.win_ptr,2, 1L<<0, key_pressed, (void *)0);
 	mlx_hook(g_mlx.win_ptr,3, 1L<<1, key_released, (void *)0);
