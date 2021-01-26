@@ -1,6 +1,6 @@
 #include "cub3d.h"
 
-int		main()
+int		main(int argc, char **argv)
 {
 	int k;
 
@@ -12,8 +12,14 @@ int		main()
 	g_mlx.img_ptr = mlx_new_image(g_mlx.mlx_ptr, g_width, g_height);
 	get_image();
 	file_errors();
+	if(ft_strcmp(argv[2], "--save") == 0)
+		screenshot();
 	if(!map_parsing())
 		error(EXIT_FAILURE, "map is invalid");
+	if(argc > 3)
+		error(EXIT_FAILURE, "There is more then two arguments");
+	if(argc < 2)
+		error(EXIT_FAILURE, "arguments are invalid");
 	g_mlx.img_data = (int *)mlx_get_data_addr(g_mlx.img_ptr, &k, &k, &k);
 	mlx_hook(g_mlx.win_ptr,2, 1L<<0, key_pressed, (void *)0);
 	mlx_hook(g_mlx.win_ptr,3, 1L<<1, key_released, (void *)0);

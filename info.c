@@ -16,8 +16,6 @@ void	player_config()
 	g_new_player.rotation_speed = 2 * (M_PI / 180);
 	g_new_player.turn_direction = 0;
 	g_new_player.walk_direction = 0;
-	// g_new_player.pos_x = 0;
-	// g_new_player.pos_y = 0;
 	g_new_player.turn_direction = 0;
 	g_new_player.rotation_angle = M_PI / 2;
 	g_new_player.FOV_angle = M_PI / 3;

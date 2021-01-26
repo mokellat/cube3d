@@ -29,6 +29,7 @@
 #include "sprites_textures.h"
 #include "parsing.h"
 #include "./Libft/libft.h"
+#include "bitmap.h"
 #define BUFFER_SIZE 32
 
 int		g_height;

@@ -65,7 +65,7 @@ int		update()
 		g_new_player.pos_y = g_new_player.new_pos_y;
 	}
 	// Map();
-	 player_draw(g_new_player.pos_y, g_new_player.pos_x, 0XFF0000);
+	//  player_draw(g_new_player.pos_y, g_new_player.pos_x, 0XFF0000);
 	// line(g_new_player.pos_x, g_new_player.pos_y, g_new_player.rotation_angle, 50, 0XFF0000);
 	// // castAllRays();
 	project_3D_Draw();
