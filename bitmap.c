@@ -1,13 +1,12 @@
 #include "cub3d.h"
 
-char	*make_bmp_header(t_bitmapheader *header)
+char	*bmp_header(t_bitmapheader *header)
 {
-	char	*buf;
+	char	*ptr;
 
-	buf = ft_calloc(54, 1);
+	ptr = ft_calloc(54, 1);
 	header->bit_count = 24;
-	header->width_in_bytes = ((g_width * header->bit_count + 31)
-	/ 32) * 4;
+	header->width_in_bytes = ((g_width * header->bit_count + 31) / 32) * 4;
 	header->image_size = header->width_in_bytes * g_height;
 	header->size = 54 + header->image_size;
 	header->off_bits = 54;
@@ -15,16 +14,16 @@ char	*make_bmp_header(t_bitmapheader *header)
 	header->planes = 1;
 	header->width = g_width;
 	header->height = g_height;
-	ft_memcpy(buf, "BM", 2);
-	ft_memcpy(buf + 2, &(header->size), 4);
-	ft_memcpy(buf + 10, &(header->off_bits), 4);
-	ft_memcpy(buf + 14, &(header->info_size), 4);
-	ft_memcpy(buf + 18, &(header->width), 4);
-	ft_memcpy(buf + 22, &(header->height), 4);
-	ft_memcpy(buf + 26, &(header->planes), 2);
-	ft_memcpy(buf + 28, &(header->bit_count), 2);
-	ft_memcpy(buf + 34, &(header->image_size), 4);
-	return (buf);
+	ft_memcpy(ptr, "BM", 2);
+	ft_memcpy(ptr + 2, &(header->size), 4);
+	ft_memcpy(ptr + 10, &(header->off_bits), 4);
+	ft_memcpy(ptr + 14, &(header->info_size), 4);
+	ft_memcpy(ptr + 18, &(header->width), 4);
+	ft_memcpy(ptr + 22, &(header->height), 4);
+	ft_memcpy(ptr + 26, &(header->planes), 2);
+	ft_memcpy(ptr + 28, &(header->bit_count), 2);
+	ft_memcpy(ptr + 34, &(header->image_size), 4);
+	return (ptr);
 }
 
 int		*get_colors(int color)
@@ -38,44 +37,45 @@ int		*get_colors(int color)
 	return (colors);
 }
 
-char	*make_img_buff(t_bitmapheader *header)
+char	*img_buff(t_bitmapheader *header)
 {
-	char	*buf;
+	char	*ptr;
 	int		i;
 	int		j;
 	int		*colors;
 
-	buf = malloc(header->image_size);
+	ptr = malloc(header->image_size);
 	i = header->height - 1;
 	while (i > 0)
 	{
 		j = 0;
 		while (j < header->width)
 		{
-			if((g_height - i) * g_width + j < g_width * g_height)
+			if(((g_height - i) * g_width) + j < g_width * g_height)
 				colors = get_colors(g_mlx.img_data[((g_height - i) * g_width) + j]);
-			buf[i * header->width_in_bytes + j * 3 + 2] = colors[0];
-			buf[i * header->width_in_bytes + j * 3 + 1] = colors[1];
-			buf[i * header->width_in_bytes + j * 3 + 0] = colors[2];
+			ptr[i * header->width_in_bytes + j * 3 + 0] = colors[2];
+			ptr[i * header->width_in_bytes + j * 3 + 1] = colors[1];
+			ptr[i * header->width_in_bytes + j * 3 + 2] = colors[0];
 			free(colors);
 			j++;
 		}
 		i--;
 	}
-	return (buf);
+	return (ptr);
 }
 
 void	screenshot(void)
 {
-	t_bitmapheader	header;
-	char			*header_str;
+	t_bitmapheader	bitmap_header;
+	char			*header_string;
 	char			*img_buf;
-	header.fd = open("./screenshot.bmp", O_WRONLY | O_CREAT, S_IRUSR | S_IWUSR);
-	header_str = make_bmp_header(&header);
-	img_buf = make_img_buff(&header);
-	write(header.fd, header_str, 54);
-	write(header.fd, img_buf, header.image_size);
-	free(header_str);
+
+	bitmap_header.fd = open("./screenshot.bmp", O_WRONLY | O_CREAT, S_IRUSR | S_IWUSR);
+	header_string = bmp_header(&bitmap_header);
+	img_buf = img_buff(&bitmap_header);
+	write(bitmap_header.fd, header_string, 54);
+	write(bitmap_header.fd, img_buf, bitmap_header.image_size);
+	free(header_string);
 	free(img_buf);
 	exit(EXIT_SUCCESS);
 }

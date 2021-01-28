@@ -14,6 +14,6 @@ typedef struct		s_bitmapheader{
 	int			fd;
 }					t_bitmapheader;
 void				screenshot(void);
-char				*make_img_buff(t_bitmapheader *header);
+char				*img_buff(t_bitmapheader *header);
 int					*get_colors(int color);
-char				*make_bmp_header(t_bitmapheader *header);
+char				*bmp_header(t_bitmapheader *header);

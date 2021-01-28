@@ -35,7 +35,7 @@ void	draw_sprites(int x, double height)
 	{
 		j = (g_height - height) / 2;
 		y_offset = 0;
-		if (i >= 0 && i < g_width /*&& distance < g_rays[i].distance*/)
+		if (i >= 0 && i < g_width /*&& g_distance < g_rays[i].distance*/)
 		{
 			while (j < (g_height + height) / 2 - 1)
 			{

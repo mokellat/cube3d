@@ -33,7 +33,7 @@ int		r_exec(int *k, int i, int *x)
 
 void	R_exec(int *k, int i, int *indexx, int x)
 {
-	int	j;
+	int		j;
 
 	j = *k + 1;
 	while(g_lines[i][j])

@@ -90,7 +90,7 @@ int		map_surronding()
 	while(i < g_count)
 	{
 		j = ft_strlen(g_map[i]);
-		if((g_map[i][0] == '1' || g_map[i][j - 1] == '1') || (g_map[i][0] == ' ' && g_map[i][j - 1] == ' '))
+		if((g_map[i][0] == '1' || g_map[i][0] == ' ') && (g_map[i][j - 1] == '1' || g_map[i][j - 1] == ' '))
 		{
 			k = 0;
 			while(k < (int)j && (i == 0 || i == g_count - 1))
@@ -123,8 +123,8 @@ void	player_init()
 			if(g_map[i][j] == 'N' || g_map[i][j] == 'W' || g_map[i][j] == 'S'
 			|| g_map[i][j] == 'E')
 			{
-				g_new_player.pos_x = j * g_tile + g_tile / 2;
-				g_new_player.pos_y = i * g_tile + g_tile / 2;
+				g_new_player.pos_x = (j + 0.5) * g_tile;
+				g_new_player.pos_y = (i + 0.5) * g_tile;
 				g_map[i][j] = '0';
 				indexx++;
 			}

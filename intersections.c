@@ -5,8 +5,8 @@ void	rays_directions()
 	normalise_angle();
 	g_new_player.ray_down = (g_new_player.ray_angle > 0 && g_new_player.ray_angle < M_PI);
 	g_new_player.ray_up = !(g_new_player.ray_down);
-	g_new_player.ray_left = !g_new_player.ray_right;
 	g_new_player.ray_right = (g_new_player.ray_angle < 0.5 * M_PI || g_new_player.ray_angle > 1.5 * M_PI);
+	g_new_player.ray_left = !g_new_player.ray_right;
 }
 
 void	help_inter_horz()
@@ -66,7 +66,7 @@ void	horz_intersection_calcul()
 	g_xstephorz *= (g_new_player.ray_right && g_xstephorz < 0) ? -1 : 1;
 	g_nexthorztouchx = g_xinterupthorz;
 	g_nexthorztouchy = g_yinterupthorz;
-	if (g_new_player.ray_up)
+	if(g_new_player.ray_up)
 		g_nexthorztouchy--;
 	help_inter_horz();
 }
@@ -88,7 +88,7 @@ void	ver_intersection_calcul()
 	g_ystepver *= (g_new_player.ray_down && g_ystepver < 0) ? -1 : 1;
 	g_nextvertouchx = g_xinteruptver;
 	g_nextvertouchy = g_yinteruptver;
-	if (g_new_player.ray_left)
+	if(g_new_player.ray_left)
 		g_nextvertouchx--;
 	help_inter_ver();
 }
