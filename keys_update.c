@@ -50,7 +50,7 @@ int		update()
 	double	move_speed;
 	int		k;
 
-	move_speed = 5.0;
+	move_speed = 10.0;
 	mlx_clear_window(g_mlx.mlx_ptr, g_mlx.win_ptr);
 	mlx_destroy_image(g_mlx.mlx_ptr, g_mlx.img_ptr);
 	g_mlx.img_ptr = mlx_new_image(g_mlx.mlx_ptr, g_width, g_height);
@@ -67,7 +67,7 @@ int		update()
 	// Map();
 	//  player_draw(g_new_player.pos_y, g_new_player.pos_x, 0XFF0000);
 	// line(g_new_player.pos_x, g_new_player.pos_y, g_new_player.rotation_angle, 50, 0XFF0000);
-	// // castAllRays();
+	// castAllRays();
 	project_3D_Draw();
 	mlx_put_image_to_window(g_mlx.mlx_ptr, g_mlx.win_ptr, g_mlx.img_ptr, 0, 0);
 	return 0;

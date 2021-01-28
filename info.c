@@ -3,7 +3,7 @@
 void	data_gather()
 {
 	g_mini_map_factoor = 1;
-	g_tile = 64;
+	g_tile = 100;
 	g_width = g_file.width;
 	g_height = g_file.height;
 	g_textureheight = g_tile;

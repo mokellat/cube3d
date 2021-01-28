@@ -4,8 +4,6 @@ int		main(int argc, char **argv)
 {
 	int k;
 
-	// *argv = "";
-	// argc = 0;
 	parsing();
 	player_config();
 	g_sp_image.image = NULL;
