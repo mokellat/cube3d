@@ -104,8 +104,8 @@ void	parsing(void)
 	beg_errors(indexx);
 	lenght_calcul();
 	i = -1;
-	while(++i < g_count)
-		printf("%s\n", g_map[i]);
+	// while(++i < g_count)
+	// 	printf("%s\n", g_map[i]);
 	// printf("%s\n",g_files_tex.no_tex);
 	// printf("%s\n",g_files_tex.so_tex);
 	// printf("%s\n",g_files_tex.we_tex);

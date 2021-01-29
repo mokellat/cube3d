@@ -50,7 +50,7 @@ int		update()
 	double	move_speed;
 	int		k;
 
-	move_speed = 10.0;
+	move_speed = 15.0;
 	mlx_clear_window(g_mlx.mlx_ptr, g_mlx.win_ptr);
 	mlx_destroy_image(g_mlx.mlx_ptr, g_mlx.img_ptr);
 	g_mlx.img_ptr = mlx_new_image(g_mlx.mlx_ptr, g_width, g_height);
