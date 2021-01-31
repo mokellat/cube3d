@@ -20,7 +20,7 @@ void	player_config()
 	g_new_player.rotation_angle = M_PI / 2;
 	g_new_player.FOV_angle = M_PI / 3;
 	g_new_player.wall_width = 1;
-	g_new_player.Num_rays = g_width / g_new_player.wall_width;
+	g_new_player.Num_rays = g_width;
 	g_new_player.ray_angle = g_new_player.rotation_angle - g_new_player.FOV_angle / 2;
 	g_wall_check = 0;
 }
@@ -43,11 +43,12 @@ int		haswallat(double x, double y)
 	double		mapindex_x;
 	double		mapindex_y;
 
-	mapindex_x = floor(x / g_tile);
-	mapindex_y = floor(y / g_tile);
+	mapindex_x = (x / g_tile);
+	mapindex_y = (y / g_tile);
 	if(mapindex_y < g_count)
 	{
-		if(g_map[(int)mapindex_y][(int)mapindex_x] != '0')
+		if(g_map[(int)mapindex_y][(int)mapindex_x] != '0' &&
+		g_map[(int)mapindex_y][(int)mapindex_x] != '2')
 			return(1);
 	}
 	return (0);

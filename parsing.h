@@ -25,6 +25,7 @@ void	colors_tre_ceilling(char **g_lines, int k, int i);
 void	R_exec(int *k, int i, int *indexx, int x);
 char	*textures_work(int *k, int *indexx, int i);
 void	player_init();
+double	player_direc();
 void	error(int etat, char *string);
 void	ft_putstr(char *s);
 void	file_errors();

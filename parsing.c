@@ -25,9 +25,7 @@ void	lenght_calcul()
 	i = 0;
 	while(g_map[i] && i + 1 < g_count)
 	{
-		if(ft_strlen(g_map[i]) < ft_strlen(g_map[i + 1]))
-			g_b_lenght = (int)ft_strlen(g_map[i + 1]);
-		else
+		if((int)ft_strlen(g_map[i]) > g_b_lenght)
 			g_b_lenght = (int)ft_strlen(g_map[i]);
 		i++;
 	}
@@ -104,8 +102,8 @@ void	parsing(void)
 	beg_errors(indexx);
 	lenght_calcul();
 	i = -1;
-	// while(++i < g_count)
-	// 	printf("%s\n", g_map[i]);
+	while(++i < g_count)
+		printf("%s\n", g_map[i]);
 	// printf("%s\n",g_files_tex.no_tex);
 	// printf("%s\n",g_files_tex.so_tex);
 	// printf("%s\n",g_files_tex.we_tex);

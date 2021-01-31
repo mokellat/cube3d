@@ -7,6 +7,7 @@ int		map_parsing()
 
 	i = 0;
 	j = -1;
+	g_new_player.rotation_angle = player_direc();
 	player_init();
 	while(i < g_count)
 	{

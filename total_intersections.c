@@ -79,7 +79,7 @@ void	total_intersection_3D(int indexx)
 		g_mlx.img_data[g_width * y + indexx] =  create_trgb(g_file.color_r_c, g_file.color_g_c, g_file.color_b_c);
 		y++;
 	}
-	//render_sprite();
+	render_sprite();
 }
 
 
