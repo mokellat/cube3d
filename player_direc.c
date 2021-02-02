@@ -9,7 +9,6 @@ double	player_direc()
 
 	i = -1;
 	return_val = 0;
-
 	while(++i < g_count)
 	{
 		k = 0;
@@ -19,9 +18,9 @@ double	player_direc()
 			if(g_map[i][k] == 'N')
 				return_val = M_PI / 2;
 			else if(g_map[i][k] == 'W')
-				return_val = -1 * M_PI;
-			else if(g_map[i][k] == 'E')
 				return_val = M_PI;
+			else if(g_map[i][k] == 'E')
+				return_val = 0;
 			else if(g_map[i][k] == 'S')
 				return_val = -1 * M_PI / 2;
 			k++;

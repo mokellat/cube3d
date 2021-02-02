@@ -48,7 +48,8 @@ typedef struct		files_tex_get
 }					t_files_tex;
 t_files_tex			g_files_tex;
 
-
+int		g_spr_x;
+int		g_spr_y;
 void	add_sprite(void);
 void	draw_sprites(int x, double height);
 void	swap(int i);
