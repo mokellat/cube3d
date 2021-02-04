@@ -31,6 +31,13 @@
 #include "./Libft/libft.h"
 #include "bitmap.h"
 #define BUFFER_SIZE 32
+#define W 13
+#define S 1
+#define A 0
+#define D 2
+#define LEFT 123
+#define RIGHT 124
+#define EXIT 53
 
 int		g_height;
 int		g_width;
@@ -108,8 +115,6 @@ typedef struct	s_mlx
 	int		*img_data;
 }	t_mlx;
 t_mlx		g_mlx;
-////////////////////////////////////////////////////////////////
-
 void	data_gather();
 void	player_config();
 void	normalise_angle();
@@ -133,8 +138,5 @@ void	help_inter_horz();
 void	help_inter_ver();
 int		create_trgb(int r, int g, int b);
 void	parsing();
-
-///////////////////////////////////////////////////////////////
-clock_t b;
-#define TIME(x) b = clock(); x /*printf("time taken: %lf\n", ((double)(clock() - b) * (CLOCKS_PER_SEC / 1000000) /1000))*/;
+int		red_cross(void);
 #endif

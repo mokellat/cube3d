@@ -2,46 +2,36 @@
 
 int		key_pressed(int key)
 {
-	if (key == 53)
+	if (key == EXIT)
 		exit(1);
-	if(key == 126)
-	{
+	if(key == W)
 		g_new_player.walk_direction = 1;
-	}
-	if(key == 125)
-	{
+	if(key == S)
 		g_new_player.walk_direction = -1;
-	}
-	if(key == 123)
-	{
+	if(key == LEFT)
 		g_new_player.turn_direction = -1;
-	}
-	if(key == 124)
-	{
+	if(key == RIGHT)
 		g_new_player.turn_direction = 1;
-	}
 	return 0;
 }
 
 int		key_released(int key)
 {
-	if(key == 126)
-	{
+	if(key == W)
 		g_new_player.walk_direction = 0;
-	}
-	if(key == 125)
-	{
+	if(key == S)
 		g_new_player.walk_direction = 0;
-	}
-	if(key == 123)
-	{
+	if(key == LEFT)
 		g_new_player.turn_direction = 0;
-	}
-	if(key == 124)
-	{
+	if(key == RIGHT)
 		g_new_player.turn_direction = 0;
-	}
 	return 0;
+}
+
+int		red_cross(void)
+{
+	mlx_destroy_window(g_mlx.mlx_ptr, g_mlx.win_ptr);
+	exit(EXIT_SUCCESS);
 }
 
 int		update()
