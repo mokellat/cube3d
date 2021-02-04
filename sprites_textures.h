@@ -50,9 +50,12 @@ t_files_tex			g_files_tex;
 
 int		g_spr_x;
 int		g_spr_y;
+int		g_place_hold[INT_MAX];
 void	add_sprite(void);
-void	draw_sprites(int x, double height);
+void	draw_sprites(int x, double distance, double height);
 void	swap(int i);
 void	sort_sprites(void);
 void	render_sprite(void);
 void	get_image();
+double	distance(double x, double y);
+void	draw_one_pixel(int y, int x, double color);

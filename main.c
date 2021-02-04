@@ -7,11 +7,13 @@ int		main(int argc, char **argv)
 	parsing();
 	player_config();
 	g_sp_image.image = NULL;
+	// add_sprite();
 	g_mlx.mlx_ptr = mlx_init();
 	g_mlx.win_ptr = mlx_new_window(g_mlx.mlx_ptr, g_width, g_height, "cub3d");
 	g_mlx.img_ptr = mlx_new_image(g_mlx.mlx_ptr, g_width, g_height);
 	g_mlx.img_data = (int *)mlx_get_data_addr(g_mlx.img_ptr, &k, &k, &k);
 	get_image();
+	add_sprite();
 	file_errors();
 	if(!map_parsing())
 		error(EXIT_FAILURE, "map is invalid");

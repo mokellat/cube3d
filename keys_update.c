@@ -65,6 +65,7 @@ int		update()
 		g_new_player.pos_y = g_new_player.new_pos_y;
 	}
 	project_3D_Draw();
+	render_sprite();
 	mlx_put_image_to_window(g_mlx.mlx_ptr, g_mlx.win_ptr, g_mlx.img_ptr, 0, 0);
 	return 0;
 }

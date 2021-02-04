@@ -24,3 +24,15 @@ void	ft_putstr(char *s)
 		}
 	}
 }
+
+double		distance(double x, double y)
+{
+	return (sqrt((x - g_new_player.pos_x) * (x - g_new_player.pos_x) +
+			(y - g_new_player.pos_y) * (y - g_new_player.pos_y)));
+}
+
+void	draw_one_pixel(int y, int x, double color)
+{
+	if (y < g_height && y >= 0 && color != 0x000000)
+		g_mlx.img_data[(y) * g_width + (x)] = color;
+}

@@ -15,7 +15,7 @@ void get_image()
 		g_tex.redbrick_data2 = (int *) mlx_get_data_addr(g_tex.texture1_xpm, &k, &k, &k);
 		g_tex.eagle_data = (int *) mlx_get_data_addr(g_tex.texture2_xpm, &k, &k, &k);
 		g_tex.grey_stone_data = (int *) mlx_get_data_addr(g_tex.texture3_xpm, &k, &k, &k);
-		g_sp_image.data = (int *)mlx_get_data_addr(g_mlx.mlx_ptr, &k, &k, &k);
+		g_sp_image.data = (int *)mlx_get_data_addr(g_sp_image.image, &k, &k, &k);
 	}
 	else
 		error(EXIT_FAILURE, "there is no texture with that name !");

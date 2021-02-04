@@ -80,6 +80,7 @@ void	project_3D_Draw()
 	while (indexx < g_new_player.Num_rays)
 	{
 		total_intersection_3D(indexx++);
+        g_place_hold[indexx] = g_distance;
 		g_new_player.ray_angle += g_new_player.FOV_angle / g_new_player.Num_rays;
 	}
 }
