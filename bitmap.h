@@ -6,11 +6,13 @@
 /*   By: mokellat <mokellat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 14:51:44 by mokellat          #+#    #+#             */
-/*   Updated: 2021/02/06 14:51:45 by mokellat         ###   ########.fr       */
+/*   Updated: 2021/02/07 17:24:59 by mokellat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#ifndef BITMAP_H
+# define BITMAP_H
+# include "cub3d.h"
 
 typedef struct		s_bitmapheader{
 	uint32_t	file_size;
@@ -29,3 +31,4 @@ void				screenshot(void);
 char				*img_buff(t_bitmapheader *header);
 int					*get_colors(int color);
 char				*bmp_header(t_bitmapheader *header);
+#endif

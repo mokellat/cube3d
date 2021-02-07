@@ -6,7 +6,7 @@
 /*   By: mokellat <mokellat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 14:53:14 by mokellat          #+#    #+#             */
-/*   Updated: 2021/02/07 08:47:26 by mokellat         ###   ########.fr       */
+/*   Updated: 2021/02/07 18:07:58 by mokellat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,14 +117,14 @@ void	render_sprite(void)
 			g_new_player.rotation_angle += 2 * M_PI;
 		if (g_new_player.rotation_angle > 2 * M_PI)
 			g_new_player.rotation_angle -= 2 * M_PI;
-		if ((g_new_player.rotation_angle - g_new_player.FOV_angle / 2) - angle > M_PI)
+		if ((g_new_player.rotation_angle - g_new_player.fov_angle / 2) - angle > M_PI)
 			angle = angle + 2 * M_PI;
-		if (angle - (g_new_player.rotation_angle - g_new_player.FOV_angle / 2) > M_PI)
+		if (angle - (g_new_player.rotation_angle - g_new_player.fov_angle / 2) > M_PI)
 			angle = angle - 2 * M_PI;
 		sprite_height = (g_tile / g_sprites[i].distance) *
 						g_distanceprojplane;
-		column_index = (angle - (g_new_player.rotation_angle - g_new_player.FOV_angle / 2))
-						/ (g_new_player.FOV_angle / g_width) - (sprite_height / 2);
+		column_index = (angle - (g_new_player.rotation_angle - g_new_player.fov_angle / 2))
+						/ (g_new_player.fov_angle / g_width) - (sprite_height / 2);
 		draw_sprites(column_index, g_sprites[i].distance, sprite_height);
 		i++;
 	}

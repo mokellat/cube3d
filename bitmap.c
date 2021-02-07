@@ -6,7 +6,7 @@
 /*   By: mokellat <mokellat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 14:51:40 by mokellat          #+#    #+#             */
-/*   Updated: 2021/02/07 10:56:49 by mokellat         ###   ########.fr       */
+/*   Updated: 2021/02/07 17:22:35 by mokellat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,9 @@ char	*img_buff(t_bitmapheader *header)
 		j = 0;
 		while (j < header->width)
 		{
-			if(((g_height - i) * g_width) + j < g_width * g_height)
-				colors = get_colors(g_mlx.img_data[((g_height - i) * g_width) + j]);
+			if (((g_height - i) * g_width) + j < g_width * g_height)
+				colors = get_colors(g_mlx.img_data[((g_height - i)
+				* g_width) + j]);
 			ptr[i * header->width_in_bytes + j * 3 + 0] = colors[2];
 			ptr[i * header->width_in_bytes + j * 3 + 1] = colors[1];
 			ptr[i * header->width_in_bytes + j * 3 + 2] = colors[0];
@@ -82,7 +83,7 @@ void	screenshot(void)
 	char			*header_string;
 	char			*img_buf;
 
-	bitmap_header.fd = open("./screenshot.bmp", O_WRONLY | O_CREAT, S_IRUSR | S_IWUSR);
+	bitmap_header.fd = open("./screenshot.bmp", O_WRONLY | O_CREAT);
 	header_string = bmp_header(&bitmap_header);
 	img_buf = img_buff(&bitmap_header);
 	write(bitmap_header.fd, header_string, 54);

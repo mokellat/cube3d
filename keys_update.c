@@ -6,7 +6,7 @@
 /*   By: mokellat <mokellat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 14:51:25 by mokellat          #+#    #+#             */
-/*   Updated: 2021/02/07 11:02:55 by mokellat         ###   ########.fr       */
+/*   Updated: 2021/02/07 18:40:09 by mokellat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,36 +19,36 @@ int		key_pressed(int key)
 		free_mem();
 		exit(EXIT_SUCCESS);
 	}
-	if(key == W)
+	if (key == W)
 		g_new_player.walk_direction = 1;
-	if(key == S)
+	if (key == S)
 		g_new_player.walk_direction = -1;
-	if(key == LEFT)
+	if (key == LEFT)
 		g_new_player.turn_direction = -1;
-	if(key == RIGHT)
+	if (key == RIGHT)
 		g_new_player.turn_direction = 1;
-	if(key == A)
+	if (key == A)
 		g_new_player.side_direction = 1;
-	if(key == D)
+	if (key == D)
 		g_new_player.side_direction = -1;
-	return 0;
+	return (0);
 }
 
 int		key_released(int key)
 {
-	if(key == W)
+	if (key == W)
 		g_new_player.walk_direction = 0;
-	if(key == S)
+	if (key == S)
 		g_new_player.walk_direction = 0;
-	if(key == LEFT)
+	if (key == LEFT)
 		g_new_player.turn_direction = 0;
-	if(key == RIGHT)
+	if (key == RIGHT)
 		g_new_player.turn_direction = 0;
-	if(key == A)
+	if (key == A)
 		g_new_player.side_direction = 0;
-	if(key == D)
+	if (key == D)
 		g_new_player.side_direction = 0;
-	return 0;
+	return (0);
 }
 
 int		red_cross(void)
@@ -61,22 +61,25 @@ int		red_cross(void)
 void	player_move(double angle, double move_step, double move_speed)
 {
 	if (g_new_player.side_direction != 0)
-    {
+	{
 		angle = g_new_player.rotation_angle - M_PI / 2;
 		move_step = g_new_player.side_direction * move_speed;
 		g_new_player.new_pos_x = g_new_player.pos_x + cos(angle) * move_step;
 		g_new_player.new_pos_y = g_new_player.pos_y + sin(angle) * move_step;
-    }
+	}
 	else
 	{
-		g_new_player.rotation_angle += g_new_player.turn_direction * g_new_player.rotation_speed;
+		g_new_player.rotation_angle += g_new_player.turn_direction
+		* g_new_player.rotation_speed;
 		move_step = g_new_player.walk_direction * move_speed;
-		g_new_player.new_pos_x = g_new_player.pos_x + cos(g_new_player.rotation_angle) * move_step;
-		g_new_player.new_pos_y = g_new_player.pos_y + sin(g_new_player.rotation_angle) * move_step;
+		g_new_player.new_pos_x = g_new_player.pos_x +
+		cos(g_new_player.rotation_angle) * move_step;
+		g_new_player.new_pos_y = g_new_player.pos_y +
+		sin(g_new_player.rotation_angle) * move_step;
 	}
 }
 
-int		update()
+int		update(void)
 {
 	double	move_step;
 	double	move_speed;
@@ -91,13 +94,13 @@ int		update()
 	g_mlx.img_ptr = mlx_new_image(g_mlx.mlx_ptr, g_width, g_height);
 	g_mlx.img_data = (int *)mlx_get_data_addr(g_mlx.img_ptr, &k, &k, &k);
 	player_move(angle, move_step, move_speed);
-	if (!haswallat(g_new_player.new_pos_x , g_new_player.new_pos_y))
+	if (!haswallat(g_new_player.new_pos_x, g_new_player.new_pos_y))
 	{
 		g_new_player.pos_x = g_new_player.new_pos_x;
 		g_new_player.pos_y = g_new_player.new_pos_y;
 	}
-	project_3D_Draw();
+	project_3d_draw();
 	render_sprite();
 	mlx_put_image_to_window(g_mlx.mlx_ptr, g_mlx.win_ptr, g_mlx.img_ptr, 0, 0);
-	return 0;
+	return (0);
 }

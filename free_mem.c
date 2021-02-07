@@ -6,7 +6,7 @@
 /*   By: mokellat <mokellat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/07 08:21:01 by mokellat          #+#    #+#             */
-/*   Updated: 2021/02/07 11:05:50 by mokellat         ###   ########.fr       */
+/*   Updated: 2021/02/07 18:31:28 by mokellat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,10 @@ void	free_map(char **ptr)
 	free(ptr);
 }
 
-void	free_mem()
+void	free_mem(void)
 {
-	if(g_map)
+	if (g_map)
 		free_map(g_map);
-	if(g_lines)
+	if (g_lines)
 		free_matrice(g_lines);
 }
