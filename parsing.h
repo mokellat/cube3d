@@ -6,7 +6,7 @@
 /*   By: mokellat <mokellat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 14:52:51 by mokellat          #+#    #+#             */
-/*   Updated: 2021/02/06 14:52:52 by mokellat         ###   ########.fr       */
+/*   Updated: 2021/02/07 11:04:43 by mokellat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ char			*g_line;
 int				g_count;
 int				g_counter;
 int				g_b_lenght;
+int				g_file_lenght;
 void			colors_tre_floor(char **g_lines, int k, int i);
 void			colors_tre_ceilling(char **g_lines, int k, int i);
 void			R_exec(int *k, int i, int *indexx, int x);

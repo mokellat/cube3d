@@ -6,7 +6,7 @@
 /*   By: mokellat <mokellat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 18:39:11 by mokellat          #+#    #+#             */
-/*   Updated: 2020/12/20 20:38:36 by mokellat         ###   ########.fr       */
+/*   Updated: 2021/02/07 09:02:09 by mokellat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,6 @@ double		g_move_step;
 int			tilex;
 int			tiley;
 int			tilecolor;
-
 typedef struct	s_player
 {
 	double	pos_x;
@@ -140,4 +139,7 @@ void		help_inter_ver();
 int			create_trgb(int r, int g, int b);
 void		parsing();
 int			red_cross(void);
+void		free_matrice(char **ptr);
+void		free_mem();
+void		get_args(int argc, char **argv);
 #endif

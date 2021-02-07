@@ -6,7 +6,7 @@
 /*   By: mokellat <mokellat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 14:53:14 by mokellat          #+#    #+#             */
-/*   Updated: 2021/02/06 14:53:15 by mokellat         ###   ########.fr       */
+/*   Updated: 2021/02/07 08:47:26 by mokellat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,10 @@ void	render_sprite(void)
 	{
 		g_sprites[i].distance = distance(g_sprites[i].x, g_sprites[i].y);
 		angle = atan2(g_sprites[i].y - g_new_player.pos_y, g_sprites[i].x - g_new_player.pos_x);
+		if (g_new_player.rotation_angle < 0)
+			g_new_player.rotation_angle += 2 * M_PI;
+		if (g_new_player.rotation_angle > 2 * M_PI)
+			g_new_player.rotation_angle -= 2 * M_PI;
 		if ((g_new_player.rotation_angle - g_new_player.FOV_angle / 2) - angle > M_PI)
 			angle = angle + 2 * M_PI;
 		if (angle - (g_new_player.rotation_angle - g_new_player.FOV_angle / 2) > M_PI)

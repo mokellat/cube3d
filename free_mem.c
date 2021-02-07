@@ -1,20 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   free_mem.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mokellat <mokellat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/06 14:52:03 by mokellat          #+#    #+#             */
-/*   Updated: 2021/02/07 08:31:58 by mokellat         ###   ########.fr       */
+/*   Created: 2021/02/07 08:21:01 by mokellat          #+#    #+#             */
+/*   Updated: 2021/02/07 11:05:50 by mokellat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	error(int etat, char *string)
+void	free_matrice(char **ptr)
 {
-	ft_putstr(string);
-	free_mem();
-	exit(etat);
+	int i;
+
+	i = 0;
+	while (ptr[i] && i < g_file_lenght)
+		free(ptr[i++]);
+	free(ptr);
+}
+
+void	free_map(char **ptr)
+{
+	int i;
+
+	i = 0;
+	while (i < g_count)
+		free(ptr[i++]);
+	free(ptr);
+}
+
+void	free_mem()
+{
+	if(g_map)
+		free_map(g_map);
+	if(g_lines)
+		free_matrice(g_lines);
 }

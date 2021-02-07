@@ -6,7 +6,7 @@
 /*   By: mokellat <mokellat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 14:51:40 by mokellat          #+#    #+#             */
-/*   Updated: 2021/02/06 14:51:41 by mokellat         ###   ########.fr       */
+/*   Updated: 2021/02/07 10:56:49 by mokellat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,5 +89,6 @@ void	screenshot(void)
 	write(bitmap_header.fd, img_buf, bitmap_header.image_size);
 	free(header_string);
 	free(img_buf);
+	free_mem();
 	exit(EXIT_SUCCESS);
 }

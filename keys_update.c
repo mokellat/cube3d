@@ -6,7 +6,7 @@
 /*   By: mokellat <mokellat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 14:51:25 by mokellat          #+#    #+#             */
-/*   Updated: 2021/02/06 14:51:26 by mokellat         ###   ########.fr       */
+/*   Updated: 2021/02/07 11:02:55 by mokellat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,10 @@
 int		key_pressed(int key)
 {
 	if (key == EXIT)
-		exit(1);
+	{
+		free_mem();
+		exit(EXIT_SUCCESS);
+	}
 	if(key == W)
 		g_new_player.walk_direction = 1;
 	if(key == S)
@@ -51,6 +54,7 @@ int		key_released(int key)
 int		red_cross(void)
 {
 	mlx_destroy_window(g_mlx.mlx_ptr, g_mlx.win_ptr);
+	free_mem();
 	exit(EXIT_SUCCESS);
 }
 

@@ -19,6 +19,7 @@ SRC = drawings.c\
 		bitmap.c\
 		player_direc.c\
 		parsing_norme.c\
+		free_mem.c\
 		main.c\
 		colors.c\
 		get_next_line/get_next_line.c\

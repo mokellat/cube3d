@@ -6,7 +6,7 @@
 /*   By: mokellat <mokellat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 14:53:54 by mokellat          #+#    #+#             */
-/*   Updated: 2021/02/06 14:53:55 by mokellat         ###   ########.fr       */
+/*   Updated: 2021/02/07 09:12:30 by mokellat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,14 @@
 int	ft_strcmp(char *s1, const char *s2)
 {
 	int x;
+	int retour;
 
 	x = 0;
+	retour = 0;
 	while (s1[x] == s2[x] && s1[x] != '\0' && s2[x] != '\0')
 		x++;
-	return (s1[x] - s2[x]);
+	retour = s1[x] - s2[x];
+	return (retour);
 }
 
 void	ft_putstr(char *s)
