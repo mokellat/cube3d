@@ -1,8 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   total_intersections.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mokellat <mokellat@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/02/06 14:53:38 by mokellat          #+#    #+#             */
+/*   Updated: 2021/02/06 14:53:48 by mokellat         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 void	total_intesection_calcul()
 {
-	//rays_directions();
 	data_gather();
 	normalise_angle();
 	horz_intersection_calcul();
@@ -13,7 +24,6 @@ void	total_intesection_calcul()
 	g_new_player.wallHitY = (g_horzdistance < g_verdistance) ? g_horzwallhity : g_verwallhity;
 	g_distance = (g_horzdistance < g_verdistance) ? g_horzdistance : g_verdistance;
 	g_new_player.wasHitVertical = (g_verdistance < g_horzdistance);
-	// line(g_new_player.pos_x, g_new_player.pos_y, g_new_player.ray_angle, g_distance,0xFF0000);
 }
 
 
@@ -79,7 +89,6 @@ void	total_intersection_3D(int indexx)
 		g_mlx.img_data[g_width * y + indexx] =  create_trgb(g_file.color_r_c, g_file.color_g_c, g_file.color_b_c);
 		y++;
 	}
-	// render_sprite();
 }
 
 

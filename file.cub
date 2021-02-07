@@ -1,11 +1,11 @@
-R    1500  1000
+R    1000  100
      SO        images/grey_stone.xpm
 WE        images/img1.xpm
            EA        images/redbrick.xpm
             NO       images/eagle.xpm
 
     S         images/barrel.xpm
-     F    50,255,255
+     F    50, 255, 255
    C 120,130,120
 
 
