@@ -6,7 +6,7 @@
 /*   By: mokellat <mokellat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 14:53:14 by mokellat          #+#    #+#             */
-/*   Updated: 2021/02/07 18:07:58 by mokellat         ###   ########.fr       */
+/*   Updated: 2021/02/08 14:59:27 by mokellat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	draw_sprites(int x, double distance, double height)
 	}
 }
 
-void	swap(int i)
+void	replace(int i)
 {
 	t_sprite tmp;
 
@@ -76,7 +76,7 @@ void	swap(int i)
 	}
 }
 
-void	sort_sprites(void)
+void	sprites_sort(void)
 {
 	int	i;
 	int	j;
@@ -93,7 +93,7 @@ void	sort_sprites(void)
 		j = 0;
 		while (j < g_sprite_index - 1 - i)
 		{
-			swap(j);
+			replace(j);
 			j++;
 		}
 		i++;
@@ -102,30 +102,28 @@ void	sort_sprites(void)
 
 void	render_sprite(void)
 {
-	double		angle;
-	double		sprite_height;
-	int			column_index;
 	int			i;
 
-	sort_sprites();
+	sprites_sort();
 	i = 0;
 	while (i < g_sprite_index)
 	{
 		g_sprites[i].distance = distance(g_sprites[i].x, g_sprites[i].y);
-		angle = atan2(g_sprites[i].y - g_new_player.pos_y, g_sprites[i].x - g_new_player.pos_x);
-		if (g_new_player.rotation_angle < 0)
-			g_new_player.rotation_angle += 2 * M_PI;
-		if (g_new_player.rotation_angle > 2 * M_PI)
-			g_new_player.rotation_angle -= 2 * M_PI;
-		if ((g_new_player.rotation_angle - g_new_player.fov_angle / 2) - angle > M_PI)
-			angle = angle + 2 * M_PI;
-		if (angle - (g_new_player.rotation_angle - g_new_player.fov_angle / 2) > M_PI)
-			angle = angle - 2 * M_PI;
-		sprite_height = (g_tile / g_sprites[i].distance) *
+		g_angle = atan2(g_sprites[i].y - g_new_player.pos_y, g_sprites[i].x -
+		g_new_player.pos_x);
+		normalise_rotation_angle();
+		if ((g_new_player.rotation_angle - g_new_player.fov_angle / 2)
+		- g_angle > M_PI)
+			g_angle = g_angle + 2 * M_PI;
+		if (g_angle - (g_new_player.rotation_angle -
+		g_new_player.fov_angle / 2) > M_PI)
+			g_angle = g_angle - 2 * M_PI;
+		g_sprite_height = (g_tile / g_sprites[i].distance) *
 						g_distanceprojplane;
-		column_index = (angle - (g_new_player.rotation_angle - g_new_player.fov_angle / 2))
-						/ (g_new_player.fov_angle / g_width) - (sprite_height / 2);
-		draw_sprites(column_index, g_sprites[i].distance, sprite_height);
+		g_column_index = (g_angle - (g_new_player.rotation_angle -
+		g_new_player.fov_angle / 2)) / (g_new_player.fov_angle / g_width) -
+		(g_sprite_height / 2);
+		draw_sprites(g_column_index, g_sprites[i].distance, g_sprite_height);
 		i++;
 	}
 }

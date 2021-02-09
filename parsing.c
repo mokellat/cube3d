@@ -6,7 +6,7 @@
 /*   By: mokellat <mokellat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 14:52:46 by mokellat          #+#    #+#             */
-/*   Updated: 2021/02/07 10:24:22 by mokellat         ###   ########.fr       */
+/*   Updated: 2021/02/08 14:35:49 by mokellat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,13 @@ void	beg_errors(int indexx)
 		ptr[i - 1] = ft_strtrim(g_lines[i - 1], " ");
 		if (ptr[i - 1][0] != 'R' && ptr[i - 1][0] != 'N' && ptr[i - 1][0] != 'S'
 		&& ptr[i - 1][0] != 'W' && ptr[i - 1][0] != 'E' && ptr[i - 1][0] != 'S'
-		&& ptr[i - 1][0] != 'F' && ptr[i - 1][0] != 'C' && ptr[i - 1][0] != '\0')
+		&& ptr[i - 1][0] != 'F' && ptr[i - 1][0] != 'C'
+		&& ptr[i - 1][0] != '\0')
 			error(EXIT_FAILURE, "File is invalid !");
 	}
 }
 
-void	lenght_calcul()
+void	lenght_calcul(void)
 {
 	int		i;
 

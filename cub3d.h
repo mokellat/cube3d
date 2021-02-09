@@ -6,7 +6,7 @@
 /*   By: mokellat <mokellat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 18:39:11 by mokellat          #+#    #+#             */
-/*   Updated: 2021/02/07 18:09:43 by mokellat         ###   ########.fr       */
+/*   Updated: 2021/02/09 09:54:25 by mokellat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,7 @@ void			normalise_angle();
 double			distance_between(int x1, int y1, int x2, int y2);
 int				haswallat(double x, double y);
 void			rays_directions();
-void			line(int x1, int y1, double angle, int var, int color);
+void			line(int x1, int y1, double g_angle, int var, int color);
 void			horz_intersection_calcul();
 void			ver_intersection_calcul();
 void			total_intesection_calcul();
@@ -142,4 +142,5 @@ int				red_cross(void);
 void			free_matrice(char **ptr);
 void			free_mem();
 void			get_args(int argc, char **argv);
+void			total_intersections_init(void);
 #endif

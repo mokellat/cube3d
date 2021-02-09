@@ -6,16 +6,16 @@
 /*   By: mokellat <mokellat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 14:52:37 by mokellat          #+#    #+#             */
-/*   Updated: 2021/02/06 14:52:38 by mokellat         ###   ########.fr       */
+/*   Updated: 2021/02/08 14:32:53 by mokellat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	R_and_tex(int *indexx, int *i, int *k, int *x)
+void	r_and_tex(int *indexx, int *i, int *k, int *x)
 {
 	if (g_lines[*i][*k] == 'R')
-		R_exec(k, *i, indexx, *x);
+		big_r_exec(k, *i, indexx, *x);
 	else if (g_lines[*i][*k] == 'N' && g_lines[*i][*k + 1] == 'O')
 		g_files_tex.no_tex = textures_work(k, indexx, *i);
 	else if (g_lines[*i][*k] == 'S' && g_lines[*i][*k + 1] == 'O')
@@ -79,13 +79,12 @@ void	parsing_work(int *i, int j, int *k, int *indexx, int *x)
 		{
 			if (g_lines[*i][0] == '\0')
 				(*indexx)++;
-			R_and_tex(indexx, i, k, x);
+			r_and_tex(indexx, i, k, x);
 			c_f_traitement(indexx, i, k);
-			if(map_traitement(*i, *k, *indexx))
-				break;
+			if (map_traitement(*i, *k, *indexx))
+				break ;
 		}
 		(*i)++;
 		*k = -1;
 	}
 }
-

@@ -6,13 +6,13 @@
 /*   By: mokellat <mokellat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 14:52:59 by mokellat          #+#    #+#             */
-/*   Updated: 2021/02/06 14:53:00 by mokellat         ###   ########.fr       */
+/*   Updated: 2021/02/08 14:47:09 by mokellat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-double	player_direc()
+double	player_direc(void)
 {
 	int		i;
 	int		k;
@@ -21,19 +21,19 @@ double	player_direc()
 
 	i = -1;
 	return_val = 0;
-	while(++i < g_count)
+	while (++i < g_count)
 	{
 		k = 0;
 		while (k < (int)ft_strlen(g_map[i]))
 		{
 			ii = g_map[i][k];
-			if(g_map[i][k] == 'N')
+			if (g_map[i][k] == 'N')
 				return_val = M_PI / 2;
-			else if(g_map[i][k] == 'W')
+			else if (g_map[i][k] == 'W')
 				return_val = M_PI;
-			else if(g_map[i][k] == 'E')
+			else if (g_map[i][k] == 'E')
 				return_val = 0;
-			else if(g_map[i][k] == 'S')
+			else if (g_map[i][k] == 'S')
 				return_val = -1 * M_PI / 2;
 			k++;
 		}

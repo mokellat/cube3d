@@ -6,13 +6,13 @@
 /*   By: mokellat <mokellat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 14:52:42 by mokellat          #+#    #+#             */
-/*   Updated: 2021/02/06 14:52:43 by mokellat         ###   ########.fr       */
+/*   Updated: 2021/02/08 14:34:44 by mokellat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	progrmm_init()
+void	progrmm_init(void)
 {
 	g_file.height = -1;
 	g_file.width = -1;
@@ -30,27 +30,27 @@ int		r_exec(int *k, int i, int *x)
 
 	(*k)++;
 	variable = -1;
-	*x = (int) g_lines[i][*k];
-	while(*x < 48 || *x > 59)
+	*x = (int)g_lines[i][*k];
+	while (*x < 48 || *x > 59)
 	{
-		if(*x == 32)
+		if (*x == 32)
 			(*k)++;
 		else
 			error(EXIT_FAILURE, "dimensions are invalid !");
-		*x = (int) g_lines[i][*k];
+		*x = (int)g_lines[i][*k];
 	}
 	variable = ft_atoi(&g_lines[i][*k]);
 	return (variable);
 }
 
-void	R_exec(int *k, int i, int *indexx, int x)
+void	big_r_exec(int *k, int i, int *indexx, int x)
 {
 	int	j;
 
 	j = *k + 1;
-	while(g_lines[i][j])
+	while (g_lines[i][j])
 	{
-		if(!ft_isdigit(g_lines[i][j]) && g_lines[i][j] != ' ')
+		if (!ft_isdigit(g_lines[i][j]) && g_lines[i][j] != ' ')
 			error(EXIT_FAILURE, "dimensions are invalid !");
 		j++;
 	}
@@ -58,13 +58,13 @@ void	R_exec(int *k, int i, int *indexx, int x)
 	g_file.width = (g_file.width > 2560 ? 2560 : g_file.width);
 	(*indexx)++;
 	g_counter++;
-	while(x >= 48 && x <= 59)
+	while (x >= 48 && x <= 59)
 	{
 		(*k)++;
-		x = (int) g_lines[i][*k];
+		x = (int)g_lines[i][*k];
 	}
 	g_file.height = r_exec(k, i, &x);
-	g_file.height =  (g_file.height > 1440 ? 1440 : g_file.height);
+	g_file.height = (g_file.height > 1440 ? 1440 : g_file.height);
 }
 
 char	*textures_work(int *k, int *indexx, int i)
@@ -73,7 +73,7 @@ char	*textures_work(int *k, int *indexx, int i)
 
 	variable = NULL;
 	*k = *k + 2;
-	while(g_lines[i][*k] == ' ')
+	while (g_lines[i][*k] == ' ')
 		(*k)++;
 	(*indexx)++;
 	g_counter++;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mokellat <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mokellat <mokellat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/11 13:27:54 by mokellat          #+#    #+#             */
-/*   Updated: 2019/11/05 09:27:58 by mokellat         ###   ########.fr       */
+/*   Updated: 2021/02/08 15:52:57 by mokellat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,6 @@ int	ft_atoi(const char *str)
 	test = 0;
 	while (str[i] && (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13)))
 		i++;
-	// if (str[i] == '-' || str[i] == '+')
-	// {
-	// 	if (str[i] == '-')
-	// 		signe = -1;
-	// 	i++;
-	// }
 	while (str[i] && (str[i] >= '0' && str[i] <= '9'))
 	{
 		test = test * 10 + (unsigned long long)(str[i] - 48);

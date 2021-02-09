@@ -20,6 +20,7 @@ SRC = drawings.c\
 		player_direc.c\
 		parsing_norme.c\
 		free_mem.c\
+		sprites_utils.c\
 		main.c\
 		colors.c\
 		get_next_line/get_next_line.c\

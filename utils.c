@@ -6,13 +6,13 @@
 /*   By: mokellat <mokellat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 14:53:54 by mokellat          #+#    #+#             */
-/*   Updated: 2021/02/07 09:12:30 by mokellat         ###   ########.fr       */
+/*   Updated: 2021/02/08 15:52:09 by mokellat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	ft_strcmp(char *s1, const char *s2)
+int		ft_strcmp(char *s1, const char *s2)
 {
 	int x;
 	int retour;
@@ -40,7 +40,7 @@ void	ft_putstr(char *s)
 	}
 }
 
-double		distance(double x, double y)
+double	distance(double x, double y)
 {
 	return (sqrt((x - g_new_player.pos_x) * (x - g_new_player.pos_x) +
 			(y - g_new_player.pos_y) * (y - g_new_player.pos_y)));

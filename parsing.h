@@ -6,13 +6,15 @@
 /*   By: mokellat <mokellat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 14:52:51 by mokellat          #+#    #+#             */
-/*   Updated: 2021/02/07 11:04:43 by mokellat         ###   ########.fr       */
+/*   Updated: 2021/02/08 15:55:06 by mokellat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#ifndef PARSING_H
+# define PARSING_H
+# include "cub3d.h"
 
-typedef struct file_parsing
+typedef struct	s_file_parsing
 {
 	int			width;
 	int			height;
@@ -22,7 +24,7 @@ typedef struct file_parsing
 	int			color_r_c;
 	int			color_g_c;
 	int			color_b_c;
-	char 		*ptr;
+	char		*ptr;
 }				t_parse;
 t_parse			g_file;
 char			**g_lines;
@@ -34,7 +36,8 @@ int				g_b_lenght;
 int				g_file_lenght;
 void			colors_tre_floor(char **g_lines, int k, int i);
 void			colors_tre_ceilling(char **g_lines, int k, int i);
-void			R_exec(int *k, int i, int *indexx, int x);
+void			big_r_exec(int *k, int i, int *indexx, int x);
+int				r_exec(int *k, int i, int *x);
 char			*textures_work(int *k, int *indexx, int i);
 void			player_init();
 double			player_direc();
@@ -48,8 +51,9 @@ int				check_map_elements();
 int				check_map_errors();
 int				map_surronding();
 int				ft_strcmp(char *s1, const char *s2);
-void			R_and_tex(int *indexx, int *i, int *k, int *x);
+void			r_and_tex(int *indexx, int *i, int *k, int *x);
 void			c_f_traitement(int *indexx, int *i, int *k);
 int				map_traitement(int i, int k, int indexx);
 void			get_next_line_work(int *fd, int *i, int *j);
 void			parsing_work(int *i, int j, int *k, int *indexx, int *x);
+#endif

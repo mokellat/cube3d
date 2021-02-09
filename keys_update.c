@@ -6,7 +6,7 @@
 /*   By: mokellat <mokellat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 14:51:25 by mokellat          #+#    #+#             */
-/*   Updated: 2021/02/07 18:40:09 by mokellat         ###   ########.fr       */
+/*   Updated: 2021/02/08 14:59:18 by mokellat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,14 +58,14 @@ int		red_cross(void)
 	exit(EXIT_SUCCESS);
 }
 
-void	player_move(double angle, double move_step, double move_speed)
+void	player_move(double g_angle, double move_step, double move_speed)
 {
 	if (g_new_player.side_direction != 0)
 	{
-		angle = g_new_player.rotation_angle - M_PI / 2;
+		g_angle = g_new_player.rotation_angle - M_PI / 2;
 		move_step = g_new_player.side_direction * move_speed;
-		g_new_player.new_pos_x = g_new_player.pos_x + cos(angle) * move_step;
-		g_new_player.new_pos_y = g_new_player.pos_y + sin(angle) * move_step;
+		g_new_player.new_pos_x = g_new_player.pos_x + cos(g_angle) * move_step;
+		g_new_player.new_pos_y = g_new_player.pos_y + sin(g_angle) * move_step;
 	}
 	else
 	{
@@ -84,16 +84,16 @@ int		update(void)
 	double	move_step;
 	double	move_speed;
 	int		k;
-	double	angle;
+	double	g_angle;
 
 	move_speed = 10.0;
-	angle = 0.0;
+	g_angle = 0.0;
 	move_step = 0.0;
 	mlx_clear_window(g_mlx.mlx_ptr, g_mlx.win_ptr);
 	mlx_destroy_image(g_mlx.mlx_ptr, g_mlx.img_ptr);
 	g_mlx.img_ptr = mlx_new_image(g_mlx.mlx_ptr, g_width, g_height);
 	g_mlx.img_data = (int *)mlx_get_data_addr(g_mlx.img_ptr, &k, &k, &k);
-	player_move(angle, move_step, move_speed);
+	player_move(g_angle, move_step, move_speed);
 	if (!haswallat(g_new_player.new_pos_x, g_new_player.new_pos_y))
 	{
 		g_new_player.pos_x = g_new_player.new_pos_x;
