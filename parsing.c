@@ -6,7 +6,7 @@
 /*   By: mokellat <mokellat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 14:52:46 by mokellat          #+#    #+#             */
-/*   Updated: 2021/02/08 14:35:49 by mokellat         ###   ########.fr       */
+/*   Updated: 2021/02/12 18:55:26 by mokellat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,22 +49,19 @@ void	parsing(void)
 {
 	int	i;
 	int	k;
-	int	fd;
 	int	j;
-	int	x;
 	int	indexx;
 
 	i = 1;
 	j = 0;
 	indexx = 0;
 	g_count = 0;
-	fd = 0;
-	x = 0;
+	g_fd = 0;
 	k = -1;
 	g_counter = 0;
 	i = 0;
-	get_next_line_work(&fd, &i, &j);
-	parsing_work(&i, j, &k, &indexx, &x);
+	get_next_line_work(&g_fd, &i, &j);
+	parsing_work(&i, j, &k, &indexx);
 	if (g_map == NULL)
 		error(EXIT_FAILURE, "there is no map !");
 	beg_errors(indexx);

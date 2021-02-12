@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mokellat <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mokellat <mokellat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/20 11:34:23 by mokellat          #+#    #+#             */
-/*   Updated: 2019/11/08 05:03:07 by mokellat         ###   ########.fr       */
+/*   Updated: 2021/02/12 15:33:09 by mokellat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,10 @@ char	*ft_substr(char const *s, unsigned int start, size_t len);
 int		ft_tolower(int c);
 int		ft_toupper(int c);
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
-void	ft_putchar_fd(char c, int fd);
-void	ft_putstr_fd(char *s, int fd);
-void	ft_putendl_fd(char *s, int fd);
-void	ft_putnbr_fd(int n, int fd);
+void	ft_putchar_fd(char c, int g_fd);
+void	ft_putstr_fd(char *s, int g_fd);
+void	ft_putendl_fd(char *s, int g_fd);
+void	ft_putnbr_fd(int n, int g_fd);
 char	**ft_split(char const *s, char c);
 char	**put_split(char c, char **str, int *ptr, char *s1);
 #endif

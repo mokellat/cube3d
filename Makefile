@@ -21,6 +21,7 @@ SRC = drawings.c\
 		parsing_norme.c\
 		free_mem.c\
 		sprites_utils.c\
+		colors_error.c\
 		main.c\
 		colors.c\
 		get_next_line/get_next_line.c\

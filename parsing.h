@@ -6,7 +6,7 @@
 /*   By: mokellat <mokellat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 14:52:51 by mokellat          #+#    #+#             */
-/*   Updated: 2021/02/08 15:55:06 by mokellat         ###   ########.fr       */
+/*   Updated: 2021/02/12 16:34:32 by mokellat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int				g_count;
 int				g_counter;
 int				g_b_lenght;
 int				g_file_lenght;
+int				g_fd;
 void			colors_tre_floor(char **g_lines, int k, int i);
 void			colors_tre_ceilling(char **g_lines, int k, int i);
 void			big_r_exec(int *k, int i, int *indexx, int x);
@@ -55,5 +56,6 @@ void			r_and_tex(int *indexx, int *i, int *k, int *x);
 void			c_f_traitement(int *indexx, int *i, int *k);
 int				map_traitement(int i, int k, int indexx);
 void			get_next_line_work(int *fd, int *i, int *j);
-void			parsing_work(int *i, int j, int *k, int *indexx, int *x);
+void			parsing_work(int *i, int j, int *k, int *indexx);
+void			color_error(int i);
 #endif

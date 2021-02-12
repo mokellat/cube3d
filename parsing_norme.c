@@ -6,7 +6,7 @@
 /*   By: mokellat <mokellat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 14:52:37 by mokellat          #+#    #+#             */
-/*   Updated: 2021/02/08 14:32:53 by mokellat         ###   ########.fr       */
+/*   Updated: 2021/02/12 18:52:21 by mokellat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,20 +66,24 @@ void	get_next_line_work(int *fd, int *i, int *j)
 	while ((*i = get_next_line(*fd, &g_line)))
 	{
 		(*j)++;
-		g_lines = realloc(g_lines, *j * sizeof(g_line));
+		g_lines = realloc(g_lines, (*j + 1) * sizeof(g_line));
 		g_lines[*j - 1] = g_line;
 	}
+	g_lines[*j] = NULL;
 }
 
-void	parsing_work(int *i, int j, int *k, int *indexx, int *x)
+void	parsing_work(int *i, int j, int *k, int *indexx)
 {
+	int	x;
+
+	x = 0;
 	while (*i < j)
 	{
 		while ((*k)++ < (int)ft_strlen(g_lines[*i]))
 		{
 			if (g_lines[*i][0] == '\0')
 				(*indexx)++;
-			r_and_tex(indexx, i, k, x);
+			r_and_tex(indexx, i, k, &x);
 			c_f_traitement(indexx, i, k);
 			if (map_traitement(*i, *k, *indexx))
 				break ;

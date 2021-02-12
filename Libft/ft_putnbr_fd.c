@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mokellat <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mokellat <mokellat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 18:09:50 by mokellat          #+#    #+#             */
-/*   Updated: 2019/10/31 16:45:54 by mokellat         ###   ########.fr       */
+/*   Updated: 2021/02/12 15:33:09 by mokellat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,28 +40,28 @@ int		ft_intlen(int n)
 	return (i);
 }
 
-void	ft_putchar(char c, int fd)
+void	ft_putchar(char c, int g_fd)
 {
-	write(fd, &c, 1);
+	write(g_fd, &c, 1);
 }
 
-void	ft_putnbr_fd(int nb, int fd)
+void	ft_putnbr_fd(int nb, int g_fd)
 {
 	unsigned int n;
 
 	n = nb;
 	if (nb < 0)
 	{
-		ft_putchar('-', fd);
+		ft_putchar('-', g_fd);
 		n = -1 * nb;
 	}
 	if (n < 10)
 	{
-		ft_putchar(n + '0', fd);
+		ft_putchar(n + '0', g_fd);
 	}
 	else
 	{
-		ft_putnbr_fd(n / 10, fd);
-		ft_putnbr_fd(n % 10, fd);
+		ft_putnbr_fd(n / 10, g_fd);
+		ft_putnbr_fd(n % 10, g_fd);
 	}
 }

@@ -29,6 +29,10 @@
 		"tuple": "c",
 		"type_traits": "c",
 		"utility": "c",
-		"vector": "c"
+		"vector": "c",
+		"__config": "c",
+		"__errc": "c",
+		"__locale": "c",
+		"__tuple": "c"
 	}
 }
