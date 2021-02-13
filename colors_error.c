@@ -6,7 +6,7 @@
 /*   By: mokellat <mokellat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 16:38:19 by mokellat          #+#    #+#             */
-/*   Updated: 2021/02/13 09:44:30 by mokellat         ###   ########.fr       */
+/*   Updated: 2021/02/13 15:02:08 by mokellat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,6 @@ void	color_error(int i)
 			error(EXIT_FAILURE, "colors are invalid !");
 		}
 	}
+	free(ptr[indexx]);
+	free(ptr);
 }

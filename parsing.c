@@ -6,7 +6,7 @@
 /*   By: mokellat <mokellat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 14:52:46 by mokellat          #+#    #+#             */
-/*   Updated: 2021/02/13 09:43:23 by mokellat         ###   ########.fr       */
+/*   Updated: 2021/02/13 15:10:18 by mokellat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ void	beg_errors(int indexx)
 	int		i;
 
 	i = 0;
-	ptr = (char **)malloc(sizeof(char));
 	while (i < indexx - 1)
 	{
+		ptr = (char **)malloc(sizeof(char));
 		i++;
 		ptr = realloc(ptr, i * sizeof(g_lines[i - 1]));
 		ptr[i - 1] = ft_strtrim(g_lines[i - 1], " ");
@@ -32,6 +32,8 @@ void	beg_errors(int indexx)
 			free(ptr);
 			error(EXIT_FAILURE, "File is invalid !");
 		}
+		free(ptr[i - 1]);
+		free(ptr);
 	}
 }
 
