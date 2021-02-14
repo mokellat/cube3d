@@ -6,7 +6,7 @@
 /*   By: mokellat <mokellat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 14:52:37 by mokellat          #+#    #+#             */
-/*   Updated: 2021/02/12 18:52:21 by mokellat         ###   ########.fr       */
+/*   Updated: 2021/02/14 09:40:58 by mokellat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ int		map_traitement(int i, int k, int indexx)
 void	get_next_line_work(int *fd, int *i, int *j)
 {
 	*fd = open("./file.cub", O_RDONLY);
+	if(*fd < 0)
+		error(EXIT_FAILURE, "bad file descriptor !");
 	progrmm_init();
 	while ((*i = get_next_line(*fd, &g_line)))
 	{
@@ -69,7 +71,8 @@ void	get_next_line_work(int *fd, int *i, int *j)
 		g_lines = realloc(g_lines, (*j + 1) * sizeof(g_line));
 		g_lines[*j - 1] = g_line;
 	}
-	g_lines[*j] = NULL;
+	if (*j)
+		g_lines[*j] = NULL;
 }
 
 void	parsing_work(int *i, int j, int *k, int *indexx)

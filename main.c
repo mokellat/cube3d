@@ -6,7 +6,7 @@
 /*   By: mokellat <mokellat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 14:52:26 by mokellat          #+#    #+#             */
-/*   Updated: 2021/02/13 15:10:01 by mokellat         ###   ########.fr       */
+/*   Updated: 2021/02/14 08:20:13 by mokellat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,15 @@ void	get_args(int argc, char **argv)
 	else if (ft_strcmp(cher_ptr, ".cub") != 0)
 		error(EXIT_FAILURE, "File name is invalid !");
 	if (argc == 3)
+	{
 		if (ft_strcmp(argv[2], "--save") == 0)
 		{
 			update();
 			screenshot();
 		}
+		else
+			error(EXIT_FAILURE, "Second argument is invalid !");
+	}
 }
 
 int		main(int argc, char **argv)

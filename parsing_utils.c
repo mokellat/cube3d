@@ -6,7 +6,7 @@
 /*   By: mokellat <mokellat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 14:52:42 by mokellat          #+#    #+#             */
-/*   Updated: 2021/02/13 10:34:55 by mokellat         ###   ########.fr       */
+/*   Updated: 2021/02/14 08:01:40 by mokellat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	big_r_exec(int *k, int i, int *indexx, int x)
 		j++;
 	}
 	g_file.width = r_exec(k, i, &x);
-	g_file.width = (g_file.width > 2560 || g_file.height < 0 ?
+	g_file.width = (g_file.width > 2560 || g_file.width < 0 ?
 	2560 : g_file.width);
 	(*indexx)++;
 	g_counter++;
