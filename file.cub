@@ -1,8 +1,8 @@
-R 1000   1000
-SO        images/grey_stone.xpm
-WE        images/img1.xpm
-EA        images/redbrick.xpm
-NO       images/eagle.xpm
+R   1000 1000
+       SO        images/grey_stone.xpm
+    WE        images/img1.xpm
+       EA        images/redbrick.xpm
+   NO       images/eagle.xpm
 
 S         images/barrel.xpm
 F    0,0,0
