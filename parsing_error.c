@@ -6,7 +6,7 @@
 /*   By: mokellat <mokellat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 08:33:13 by mokellat          #+#    #+#             */
-/*   Updated: 2021/02/18 12:32:46 by mokellat         ###   ########.fr       */
+/*   Updated: 2021/02/18 14:38:23 by mokellat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	args_count(int i, int k, char c, int count)
 			indexx++;
 		j++;
 	}
-	if(indexx >= count && count == 2)
+	if (indexx >= count && count == 2)
 		error(EXIT_FAILURE, "Dimensions are invalid !");
 }
 
@@ -45,6 +45,6 @@ void	args_count_col(int i)
 			indexx++;
 		j++;
 	}
-	if(indexx > 2 || indexx < 2)
+	if (indexx > 2 || indexx < 2)
 		error(EXIT_FAILURE, "colors are invalid !");
 }
