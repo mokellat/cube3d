@@ -6,7 +6,7 @@
 /*   By: mokellat <mokellat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 14:52:37 by mokellat          #+#    #+#             */
-/*   Updated: 2021/02/16 08:11:24 by mokellat         ###   ########.fr       */
+/*   Updated: 2021/02/18 09:59:12 by mokellat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,14 @@ void	c_f_traitement(int *indexx, int *i, int *k)
 {
 	if (g_lines[*i][*k] == 'F')
 	{
+		args_count_col(*i);
 		colors_tre_floor(g_lines, *k, *i);
 		(*indexx)++;
 		g_counter++;
 	}
 	else if (g_lines[*i][*k] == 'C')
 	{
+		args_count_col(*i);
 		colors_tre_ceilling(g_lines, *k, *i);
 		(*indexx)++;
 		g_counter++;

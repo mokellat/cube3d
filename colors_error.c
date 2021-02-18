@@ -6,7 +6,7 @@
 /*   By: mokellat <mokellat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 16:38:19 by mokellat          #+#    #+#             */
-/*   Updated: 2021/02/13 15:02:08 by mokellat         ###   ########.fr       */
+/*   Updated: 2021/02/18 14:32:52 by mokellat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,20 @@
 
 void	color_error(int i)
 {
-	char	**ptr;
+	char	*ptr;
 	int		indexx;
-	int		k;
 
-	indexx = 0;
-	k = 0;
-	ptr = (char **)malloc(sizeof(char) * ft_strlen(g_lines[i]));
-	ptr[indexx] = (ft_strtrim(g_lines[i], " "));
-	while (++k < (int)ft_strlen(ptr[indexx]))
+	indexx = 1;
+	ptr = (ft_strtrim(g_lines[i], " "));
+	while (indexx < (int)ft_strlen(ptr))
 	{
-		if (ptr[indexx][k] != ' ' && !ft_isdigit(ptr[indexx][k])
-		&& ptr[indexx][k] != ',')
+		if (ptr[indexx] != ' ' && !ft_isdigit(ptr[indexx])
+		&& ptr[indexx] != ',')
 		{
 			free(ptr);
 			error(EXIT_FAILURE, "colors are invalid !");
 		}
+		indexx++;
 	}
-	free(ptr[indexx]);
 	free(ptr);
 }

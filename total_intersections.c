@@ -6,7 +6,7 @@
 /*   By: mokellat <mokellat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 14:53:38 by mokellat          #+#    #+#             */
-/*   Updated: 2021/02/09 09:54:02 by mokellat         ###   ########.fr       */
+/*   Updated: 2021/02/18 10:34:25 by mokellat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,8 +87,8 @@ void	total_intersection_3d(int indexx)
 	y = 0;
 	while (y < g_walltoppixel)
 	{
-		g_mlx.img_data[g_width * y + indexx] = create_trgb(g_file.color_r_f,
-		g_file.color_g_f, g_file.color_b_f);
+		g_mlx.img_data[g_width * y + indexx] = create_trgb(g_file.color_r_c,
+		g_file.color_g_c, g_file.color_b_c);
 		y++;
 	}
 	y = g_walltoppixel;
@@ -96,8 +96,8 @@ void	total_intersection_3d(int indexx)
 	y = g_wallbottompixel;
 	while (y < g_height)
 	{
-		g_mlx.img_data[g_width * y + indexx] = create_trgb(g_file.color_r_c,
-		g_file.color_g_c, g_file.color_b_c);
+		g_mlx.img_data[g_width * y + indexx] = create_trgb(g_file.color_r_f,
+		g_file.color_g_f, g_file.color_b_f);
 		y++;
 	}
 }

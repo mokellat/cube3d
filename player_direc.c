@@ -6,7 +6,7 @@
 /*   By: mokellat <mokellat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 14:52:59 by mokellat          #+#    #+#             */
-/*   Updated: 2021/02/08 14:47:09 by mokellat         ###   ########.fr       */
+/*   Updated: 2021/02/18 10:20:41 by mokellat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,13 @@ double	player_direc(void)
 		{
 			ii = g_map[i][k];
 			if (g_map[i][k] == 'N')
-				return_val = M_PI / 2;
+				return_val = -1 * M_PI / 2;
 			else if (g_map[i][k] == 'W')
 				return_val = M_PI;
 			else if (g_map[i][k] == 'E')
 				return_val = 0;
 			else if (g_map[i][k] == 'S')
-				return_val = -1 * M_PI / 2;
+				return_val = M_PI / 2;
 			k++;
 		}
 	}

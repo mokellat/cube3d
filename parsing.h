@@ -6,7 +6,7 @@
 /*   By: mokellat <mokellat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 14:52:51 by mokellat          #+#    #+#             */
-/*   Updated: 2021/02/12 16:34:32 by mokellat         ###   ########.fr       */
+/*   Updated: 2021/02/18 09:58:58 by mokellat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,6 @@ int				map_traitement(int i, int k, int indexx);
 void			get_next_line_work(int *fd, int *i, int *j);
 void			parsing_work(int *i, int j, int *k, int *indexx);
 void			color_error(int i);
+void			args_count(int i, int k, char c, int count);
+void			args_count_col(int i);
 #endif

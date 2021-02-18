@@ -6,7 +6,7 @@
 /*   By: mokellat <mokellat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 14:52:42 by mokellat          #+#    #+#             */
-/*   Updated: 2021/02/14 08:01:40 by mokellat         ###   ########.fr       */
+/*   Updated: 2021/02/18 09:31:09 by mokellat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void	big_r_exec(int *k, int i, int *indexx, int x)
 	int	j;
 
 	j = *k + 1;
+	args_count(i, *k, ' ', 2);
 	while (g_lines[i][j])
 	{
 		if (!ft_isdigit(g_lines[i][j]) && g_lines[i][j] != ' ')
